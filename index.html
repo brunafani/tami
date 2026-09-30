@@ -1,403 +1,415 @@
 <title>Diagnóstico PhD · Tamires Veiga</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,600;9..144,700&family=Inter:wght@400;500;600&family=DM+Mono:wght@400;500&display=swap">
 <style>
-/* Tokens */
 :root {
-  --bg:        #F7F5F0;
-  --bg2:       #EDEAE3;
-  --bg3:       #E4E0D7;
-  --fg:        #1C1C1E;
-  --fg2:       #48484F;
-  --fg3:       #8A8A96;
-  --accent:    #1D6B6B;
-  --accent2:   #2A9090;
-  --accent-bg: #E6F4F4;
-  --amber:     #8C5E00;
-  --amber-bg:  #FDF3DC;
-  --red:       #B83232;
-  --red-bg:    #FDEAEA;
-  --green:     #286B45;
-  --green-bg:  #E6F4EC;
-  --border:    rgba(0,0,0,0.10);
-  --shadow:    0 1px 4px rgba(0,0,0,0.06);
-  --r:         10px;
-  color-scheme: light;
+  --bg:#F7F5F0; --bg2:#EDEAE3; --bg3:#E4E0D7;
+  --fg:#1C1C1E; --fg2:#48484F; --fg3:#8A8A96;
+  --accent:#1D6B6B; --accent2:#2A9090; --accent-bg:#E6F4F4;
+  --amber:#8C5E00; --amber-bg:#FDF3DC;
+  --red:#B83232; --red-bg:#FDEAEA;
+  --green:#286B45; --green-bg:#E6F4EC;
+  --plum:#6B3E6B; --plum-bg:#F4EAF4;
+  --border:rgba(0,0,0,0.10); --shadow:0 1px 4px rgba(0,0,0,0.06);
+  --r:10px; color-scheme:light;
 }
-@media (prefers-color-scheme: dark) {
-  :root:not([data-theme="light"]) {
-    --bg:        #111315; --bg2: #1A1D20; --bg3: #222629;
-    --fg:        #F0EEE9; --fg2: #A8A8B0; --fg3: #606068;
-    --accent:    #3AAFAF; --accent2: #5CC8C8; --accent-bg: #0E2E2E;
-    --amber:     #D4A240; --amber-bg: #2A2010;
-    --red:       #E06060; --red-bg: #2A1010;
-    --green:     #5CB88A; --green-bg: #0E2A1E;
-    --border:    rgba(255,255,255,0.08); --shadow: 0 1px 6px rgba(0,0,0,0.3);
-    color-scheme: dark;
+@media (prefers-color-scheme:dark){
+  :root:not([data-theme="light"]){
+    --bg:#111315; --bg2:#1A1D20; --bg3:#222629;
+    --fg:#F0EEE9; --fg2:#A8A8B0; --fg3:#606068;
+    --accent:#3AAFAF; --accent2:#5CC8C8; --accent-bg:#0E2E2E;
+    --amber:#D4A240; --amber-bg:#2A2010;
+    --red:#E06060; --red-bg:#2A1010;
+    --green:#5CB88A; --green-bg:#0E2A1E;
+    --plum:#C070C0; --plum-bg:#2A102A;
+    --border:rgba(255,255,255,0.08); --shadow:0 1px 6px rgba(0,0,0,0.3);
+    color-scheme:dark;
   }
 }
-:root[data-theme="dark"] {
-  --bg:        #111315; --bg2: #1A1D20; --bg3: #222629;
-  --fg:        #F0EEE9; --fg2: #A8A8B0; --fg3: #606068;
-  --accent:    #3AAFAF; --accent2: #5CC8C8; --accent-bg: #0E2E2E;
-  --amber:     #D4A240; --amber-bg: #2A2010;
-  --red:       #E06060; --red-bg: #2A1010;
-  --green:     #5CB88A; --green-bg: #0E2A1E;
-  --border:    rgba(255,255,255,0.08); --shadow: 0 1px 6px rgba(0,0,0,0.3);
-  color-scheme: dark;
+:root[data-theme="dark"]{
+  --bg:#111315; --bg2:#1A1D20; --bg3:#222629;
+  --fg:#F0EEE9; --fg2:#A8A8B0; --fg3:#606068;
+  --accent:#3AAFAF; --accent2:#5CC8C8; --accent-bg:#0E2E2E;
+  --amber:#D4A240; --amber-bg:#2A2010;
+  --red:#E06060; --red-bg:#2A1010;
+  --green:#5CB88A; --green-bg:#0E2A1E;
+  --plum:#C070C0; --plum-bg:#2A102A;
+  --border:rgba(255,255,255,0.08); --shadow:0 1px 6px rgba(0,0,0,0.3);
+  color-scheme:dark;
+}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{
+  background:var(--bg);color:var(--fg);
+  font-family:'Inter',system-ui,sans-serif;
+  font-size:15px;line-height:1.65;
+  padding-inline:20px;padding-block:0;
+  max-width:820px;margin-inline:auto;
+}
+h1,h2,h3,h4{font-family:'Fraunces',Georgia,serif;text-wrap:balance}
+a{color:var(--accent2);text-decoration:none}
+a:hover{text-decoration:underline}
+
+.nav-top{
+  position:sticky;top:env(safe-area-inset-top,0px);
+  background:var(--bg);border-bottom:1px solid var(--border);
+  padding:10px 0;display:flex;gap:6px;flex-wrap:wrap;
+  z-index:100;margin-inline:-20px;padding-inline:20px;
+}
+.nav-top a{
+  font-size:12px;font-weight:500;color:var(--fg2);
+  padding:4px 10px;border-radius:20px;
+  border:1px solid var(--border);white-space:nowrap;
+  transition:background .15s,color .15s;
+}
+.nav-top a:hover,.nav-top a.active{
+  background:var(--accent-bg);color:var(--accent);
+  border-color:var(--accent);text-decoration:none;
 }
 
-/* Reset */
-*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-html { scroll-behavior: smooth; }
-body {
-  background: var(--bg); color: var(--fg);
-  font-family: 'Inter', system-ui, sans-serif;
-  font-size: 15px; line-height: 1.65;
-  padding-inline: 20px; padding-block: 0;
-  max-width: 820px; margin-inline: auto;
+.tab-bar{
+  display:flex;gap:4px;flex-wrap:wrap;
+  margin-bottom:24px;
+  border-bottom:2px solid var(--border);
 }
-h1,h2,h3,h4 { font-family: 'Fraunces', Georgia, serif; text-wrap: balance; }
-a { color: var(--accent2); text-decoration: none; }
-a:hover { text-decoration: underline; }
+.tab-btn{
+  font-size:13px;font-weight:600;color:var(--fg3);
+  padding:8px 16px;border-radius:8px 8px 0 0;
+  border:1px solid transparent;border-bottom:none;
+  background:none;cursor:pointer;font-family:inherit;
+  transition:background .15s,color .15s;
+  margin-bottom:-2px;
+}
+.tab-btn:hover{background:var(--bg2);color:var(--fg2)}
+.tab-btn.active{
+  background:var(--bg);color:var(--accent);
+  border-color:var(--border);border-bottom:2px solid var(--bg);
+}
+.tab-panel{display:none}
+.tab-panel.active{display:block}
 
-@import url('https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,600;9..144,700&family=Inter:wght@400;500;600&family=DM+Mono:wght@400;500&display=swap');
+.hero{padding-block:52px 40px;border-bottom:1px solid var(--border)}
+.hero-eyebrow{
+  font-family:'DM Mono',monospace;font-size:11px;
+  letter-spacing:2px;text-transform:uppercase;
+  color:var(--accent2);margin-bottom:14px;
+}
+.hero h1{font-size:clamp(26px,5vw,40px);font-weight:700;line-height:1.18;color:var(--fg);margin-bottom:10px}
+.hero-sub{font-size:16px;color:var(--fg2);margin-bottom:24px;max-width:560px}
+.hero-pills{display:flex;flex-wrap:wrap;gap:8px}
+.pill{font-size:12px;font-weight:500;padding:4px 12px;border-radius:20px;border:1px solid var(--border);background:var(--bg2);color:var(--fg2)}
+.pill-accent{background:var(--accent-bg);color:var(--accent);border-color:var(--accent)}
+.pill-plum{background:var(--plum-bg);color:var(--plum);border-color:var(--plum)}
 
-/* Nav */
-.nav-top {
-  position: sticky;
-  top: env(safe-area-inset-top, 0px);
-  background: var(--bg);
-  border-bottom: 1px solid var(--border);
-  padding: 10px 0;
-  display: flex; gap: 6px; flex-wrap: wrap;
-  z-index: 100;
-  margin-inline: -20px; padding-inline: 20px;
+.stats-strip{
+  display:grid;grid-template-columns:repeat(4,1fr);
+  gap:12px;padding-block:28px;border-bottom:1px solid var(--border);
 }
-.nav-top a {
-  font-size: 12px; font-weight: 500; color: var(--fg2);
-  padding: 4px 10px; border-radius: 20px;
-  border: 1px solid var(--border); white-space: nowrap;
-  transition: background .15s, color .15s;
-}
-.nav-top a:hover, .nav-top a.active {
-  background: var(--accent-bg); color: var(--accent);
-  border-color: var(--accent); text-decoration: none;
-}
+@media(max-width:560px){.stats-strip{grid-template-columns:1fr 1fr}}
+.stat-card{background:var(--bg2);border-radius:var(--r);padding:16px;border:1px solid var(--border)}
+.stat-num{font-family:'Fraunces',serif;font-size:26px;font-weight:700;color:var(--accent);line-height:1;margin-bottom:4px}
+.stat-label{font-size:12px;color:var(--fg3)}
 
-/* Hero */
-.hero { padding-block: 52px 40px; border-bottom: 1px solid var(--border); }
-.hero-eyebrow {
-  font-family: 'DM Mono', monospace; font-size: 11px;
-  letter-spacing: 2px; text-transform: uppercase;
-  color: var(--accent2); margin-bottom: 14px;
+.section{padding-block:44px;border-bottom:1px solid var(--border)}
+.section:last-child{border-bottom:none}
+.section-label{
+  font-family:'DM Mono',monospace;font-size:10px;
+  letter-spacing:2.5px;text-transform:uppercase;
+  color:var(--fg3);margin-bottom:6px;
 }
-.hero h1 {
-  font-size: clamp(26px, 5vw, 40px); font-weight: 700;
-  line-height: 1.18; color: var(--fg); margin-bottom: 10px;
-}
-.hero-sub { font-size: 16px; color: var(--fg2); margin-bottom: 24px; max-width: 560px; }
-.hero-pills { display: flex; flex-wrap: wrap; gap: 8px; }
-.pill {
-  font-size: 12px; font-weight: 500; padding: 4px 12px;
-  border-radius: 20px; border: 1px solid var(--border);
-  background: var(--bg2); color: var(--fg2);
-}
-.pill-accent { background: var(--accent-bg); color: var(--accent); border-color: var(--accent); }
+.section h2{font-size:22px;font-weight:700;color:var(--fg);margin-bottom:20px;line-height:1.25}
 
-/* Stats */
-.stats-strip {
-  display: grid; grid-template-columns: repeat(4, 1fr);
-  gap: 12px; padding-block: 28px; border-bottom: 1px solid var(--border);
+.callout{
+  border-radius:var(--r);padding:16px 20px;margin-bottom:14px;
+  display:grid;grid-template-columns:20px 1fr;
+  gap:12px;align-items:start;font-size:14px;
 }
-@media (max-width: 560px) { .stats-strip { grid-template-columns: 1fr 1fr; } }
-.stat-card {
-  background: var(--bg2); border-radius: var(--r);
-  padding: 16px; border: 1px solid var(--border);
-}
-.stat-num {
-  font-family: 'Fraunces', serif; font-size: 26px; font-weight: 700;
-  color: var(--accent); line-height: 1; margin-bottom: 4px;
-}
-.stat-label { font-size: 12px; color: var(--fg3); }
+.callout-icon{line-height:1.5}
+.callout strong{display:block;margin-bottom:2px;font-size:13.5px}
+.callout p{font-size:13.5px;color:var(--fg2);line-height:1.6}
+.callout-green{background:var(--green-bg);border:1px solid color-mix(in srgb,var(--green) 25%,transparent)}
+.callout-amber{background:var(--amber-bg);border:1px solid color-mix(in srgb,var(--amber) 25%,transparent)}
+.callout-red{background:var(--red-bg);border:1px solid color-mix(in srgb,var(--red) 25%,transparent)}
+.callout-blue{background:var(--accent-bg);border:1px solid color-mix(in srgb,var(--accent) 25%,transparent)}
+.callout-plum{background:var(--plum-bg);border:1px solid color-mix(in srgb,var(--plum) 25%,transparent)}
+.callout-green strong{color:var(--green)}
+.callout-amber strong{color:var(--amber)}
+.callout-red strong{color:var(--red)}
+.callout-blue strong{color:var(--accent)}
+.callout-plum strong{color:var(--plum)}
 
-/* Sections */
-.section { padding-block: 44px; border-bottom: 1px solid var(--border); }
-.section:last-child { border-bottom: none; }
-.section-label {
-  font-family: 'DM Mono', monospace; font-size: 10px;
-  letter-spacing: 2.5px; text-transform: uppercase;
-  color: var(--fg3); margin-bottom: 6px;
-}
-.section h2 {
-  font-size: 22px; font-weight: 700; color: var(--fg);
-  margin-bottom: 20px; line-height: 1.25;
-}
+.g2{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+@media(max-width:560px){.g2{grid-template-columns:1fr}}
 
-/* Callout */
-.callout {
-  border-radius: var(--r); padding: 16px 20px; margin-bottom: 14px;
-  display: grid; grid-template-columns: 20px 1fr;
-  gap: 12px; align-items: start; font-size: 14px;
-}
-.callout-icon { line-height: 1.5; }
-.callout strong { display: block; margin-bottom: 2px; font-size: 13.5px; }
-.callout p { font-size: 13.5px; color: var(--fg2); line-height: 1.6; }
-.callout-green { background: var(--green-bg); border: 1px solid color-mix(in srgb, var(--green) 25%, transparent); }
-.callout-amber { background: var(--amber-bg); border: 1px solid color-mix(in srgb, var(--amber) 25%, transparent); }
-.callout-red   { background: var(--red-bg);   border: 1px solid color-mix(in srgb, var(--red)   25%, transparent); }
-.callout-blue  { background: var(--accent-bg); border: 1px solid color-mix(in srgb, var(--accent) 25%, transparent); }
-.callout-green strong { color: var(--green); }
-.callout-amber strong { color: var(--amber); }
-.callout-red   strong { color: var(--red); }
-.callout-blue  strong { color: var(--accent); }
+.card{background:var(--bg2);border:1px solid var(--border);border-radius:var(--r);padding:20px}
+.card-title{font-family:'Fraunces',serif;font-size:15px;font-weight:600;color:var(--fg);margin-bottom:8px}
+.card p{font-size:13.5px;color:var(--fg2);line-height:1.6}
 
-/* Grid 2 */
-.g2 { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
-@media (max-width: 560px) { .g2 { grid-template-columns: 1fr; } }
+.vacancy{background:var(--bg2);border:1px solid var(--border);border-radius:var(--r);overflow:hidden;margin-bottom:16px}
+.vacancy-head{padding:16px 20px 12px;border-bottom:1px solid var(--border)}
+.vacancy-title{font-family:'Fraunces',serif;font-size:15px;font-weight:600;color:var(--fg);line-height:1.35;margin-bottom:8px}
+.vacancy-tags{display:flex;flex-wrap:wrap;gap:6px;align-items:center}
+.badge{font-size:10.5px;font-weight:600;letter-spacing:0.8px;text-transform:uppercase;padding:3px 10px;border-radius:20px;white-space:nowrap}
+.badge-green{background:var(--green-bg);color:var(--green)}
+.badge-amber{background:var(--amber-bg);color:var(--amber)}
+.badge-red{background:var(--red-bg);color:var(--red)}
+.badge-blue{background:var(--accent-bg);color:var(--accent)}
+.badge-plum{background:var(--plum-bg);color:var(--plum)}
+.vacancy-meta{
+  display:flex;flex-wrap:wrap;gap:14px;
+  padding:10px 20px;border-bottom:1px solid var(--border);
+  background:var(--bg3);
+}
+.meta-item{font-size:12px;color:var(--fg3);display:flex;align-items:center;gap:5px}
+.vacancy-body{padding:14px 20px;display:grid;grid-template-columns:1fr 1fr;gap:16px}
+@media(max-width:520px){.vacancy-body{grid-template-columns:1fr}}
+.vb-label{font-size:10px;font-weight:600;letter-spacing:1.5px;text-transform:uppercase;color:var(--fg3);margin-bottom:5px}
+.vb-green{font-size:13px;color:var(--fg);line-height:1.55}
+.vb-amber{font-size:13px;color:var(--fg2);line-height:1.55}
+.vacancy-footer{padding:10px 20px 14px;border-top:1px solid var(--border);display:flex;gap:8px;flex-wrap:wrap;align-items:center}
+.btn-link{
+  display:inline-flex;align-items:center;gap:6px;
+  font-size:12.5px;font-weight:600;color:var(--accent);
+  background:var(--accent-bg);border:1px solid color-mix(in srgb,var(--accent) 30%,transparent);
+  padding:6px 14px;border-radius:20px;transition:background .15s;
+}
+.btn-link:hover{background:color-mix(in srgb,var(--accent-bg) 70%,var(--accent));text-decoration:none}
+.btn-email{
+  display:inline-flex;align-items:center;gap:6px;
+  font-size:12.5px;font-weight:600;color:var(--plum);
+  background:var(--plum-bg);border:1px solid color-mix(in srgb,var(--plum) 30%,transparent);
+  padding:6px 14px;border-radius:20px;
+  cursor:pointer;font-family:inherit;transition:background .15s;
+}
+.btn-email:hover{background:color-mix(in srgb,var(--plum-bg) 70%,var(--plum));text-decoration:none}
 
-/* Cards */
-.card { background: var(--bg2); border: 1px solid var(--border); border-radius: var(--r); padding: 20px; }
-.card-title { font-family: 'Fraunces', serif; font-size: 15px; font-weight: 600; color: var(--fg); margin-bottom: 8px; }
-.card p { font-size: 13.5px; color: var(--fg2); line-height: 1.6; }
-
-/* Vacancy cards */
-.vacancy {
-  background: var(--bg2); border: 1px solid var(--border);
-  border-radius: var(--r); overflow: hidden; margin-bottom: 16px;
+.email-overlay{
+  display:none;position:fixed;inset:0;z-index:500;
+  background:rgba(0,0,0,0.45);align-items:center;justify-content:center;padding:20px;
 }
-.vacancy-head {
-  padding: 16px 20px 12px; border-bottom: 1px solid var(--border);
+.email-overlay.visible{display:flex}
+.email-modal{
+  background:var(--bg);border:1px solid var(--border);
+  border-radius:16px;padding:28px;max-width:560px;width:100%;
+  max-height:85vh;overflow-y:auto;box-shadow:0 8px 40px rgba(0,0,0,0.18);
 }
-.vacancy-title {
-  font-family: 'Fraunces', serif; font-size: 15px; font-weight: 600;
-  color: var(--fg); line-height: 1.35; margin-bottom: 8px;
+.email-modal h3{font-family:'Fraunces',serif;font-size:18px;color:var(--fg);margin-bottom:6px}
+.email-modal p.subtitle{font-size:13px;color:var(--fg3);margin-bottom:18px}
+.email-field{margin-bottom:12px}
+.email-field label{font-size:10px;font-weight:600;letter-spacing:1.5px;text-transform:uppercase;color:var(--fg3);display:block;margin-bottom:4px}
+.email-field .field-val{font-size:13.5px;color:var(--fg2);background:var(--bg2);padding:8px 12px;border-radius:8px;border:1px solid var(--border)}
+.email-body-text{
+  font-size:13.5px;color:var(--fg);line-height:1.7;
+  background:var(--bg2);border:1px solid var(--border);
+  border-radius:8px;padding:14px;white-space:pre-wrap;
+  font-family:'Inter',sans-serif;
 }
-.vacancy-tags { display: flex; flex-wrap: wrap; gap: 6px; align-items: center; }
-.badge {
-  font-size: 10.5px; font-weight: 600; letter-spacing: 0.8px;
-  text-transform: uppercase; padding: 3px 10px; border-radius: 20px;
-  white-space: nowrap;
+.email-modal-footer{display:flex;gap:8px;margin-top:16px;flex-wrap:wrap}
+.btn-copy-email{
+  background:var(--plum);color:white;border:none;border-radius:20px;padding:8px 18px;
+  font-size:13px;font-weight:600;cursor:pointer;font-family:inherit;transition:opacity .15s;
 }
-.badge-green { background: var(--green-bg); color: var(--green); }
-.badge-amber { background: var(--amber-bg); color: var(--amber); }
-.badge-red   { background: var(--red-bg);   color: var(--red); }
-.badge-blue  { background: var(--accent-bg); color: var(--accent); }
-.vacancy-meta {
-  display: flex; flex-wrap: wrap; gap: 14px;
-  padding: 10px 20px; border-bottom: 1px solid var(--border);
-  background: var(--bg3);
-}
-.meta-item { font-size: 12px; color: var(--fg3); display: flex; align-items: center; gap: 5px; }
-.vacancy-body {
-  padding: 14px 20px;
-  display: grid; grid-template-columns: 1fr 1fr; gap: 16px;
-}
-@media (max-width: 520px) { .vacancy-body { grid-template-columns: 1fr; } }
-.vb-label { font-size: 10px; font-weight: 600; letter-spacing: 1.5px; text-transform: uppercase; color: var(--fg3); margin-bottom: 5px; }
-.vb-green { font-size: 13px; color: var(--fg); line-height: 1.55; }
-.vb-amber { font-size: 13px; color: var(--fg2); line-height: 1.55; }
-.vacancy-footer {
-  padding: 10px 20px 14px;
-  border-top: 1px solid var(--border);
-}
-.btn-link {
-  display: inline-flex; align-items: center; gap: 6px;
-  font-size: 12.5px; font-weight: 600; color: var(--accent);
-  background: var(--accent-bg); border: 1px solid color-mix(in srgb, var(--accent) 30%, transparent);
-  padding: 6px 14px; border-radius: 20px;
-  transition: background .15s;
-}
-.btn-link:hover { background: color-mix(in srgb, var(--accent-bg) 70%, var(--accent)); text-decoration: none; }
-
-/* Gap rows */
-.gap-row {
-  display: grid; grid-template-columns: 160px 1fr 160px;
-  gap: 16px; align-items: start;
-  background: var(--bg2); border: 1px solid var(--border);
-  border-radius: var(--r); padding: 14px 18px; margin-bottom: 10px;
-}
-@media (max-width: 600px) { .gap-row { grid-template-columns: 1fr; } }
-.gap-label { font-size: 10px; font-weight: 600; letter-spacing: 1.5px; text-transform: uppercase; color: var(--fg3); margin-bottom: 4px; }
-.gap-row p { font-size: 13px; color: var(--fg2); line-height: 1.55; }
-.gap-row strong { font-size: 13.5px; color: var(--fg); }
-
-/* Timeline */
-.timeline { padding-left: 20px; border-left: 2px solid var(--border); }
-.tl-item { position: relative; margin-bottom: 28px; padding-left: 16px; }
-.tl-item::before {
-  content: ''; position: absolute; left: -26px; top: 4px;
-  width: 12px; height: 12px; border-radius: 50%;
-  background: var(--accent); border: 2px solid var(--bg); outline: 2px solid var(--accent);
-}
-.tl-phase { font-family: 'DM Mono', monospace; font-size: 10px; letter-spacing: 1.5px; text-transform: uppercase; color: var(--accent); margin-bottom: 4px; }
-.tl-title { font-family: 'Fraunces', serif; font-size: 15px; font-weight: 600; color: var(--fg); margin-bottom: 5px; }
-.tl-body { font-size: 13.5px; color: var(--fg2); line-height: 1.6; }
-
-/* Positioning blocks */
-.pos-block {
-  border-left: 3px solid var(--accent); padding: 14px 18px;
-  background: var(--accent-bg); border-radius: 0 var(--r) var(--r) 0;
-  margin-bottom: 12px;
-}
-.pos-block h4 { font-family: 'Fraunces', serif; font-size: 14px; font-weight: 600; color: var(--accent); margin-bottom: 5px; }
-.pos-block p { font-size: 13.5px; color: var(--fg2); line-height: 1.6; }
-
-/* Verdict blocks */
-.verdict-block {
-  background: var(--bg2); border: 1px solid var(--border);
-  border-radius: var(--r); padding: 18px 22px; margin-bottom: 12px;
-}
-.verdict-block-label {
-  font-family: 'DM Mono', monospace; font-size: 10px;
-  letter-spacing: 2px; text-transform: uppercase;
-  color: var(--fg3); margin-bottom: 6px;
-}
-.verdict-block p { font-size: 14px; color: var(--fg2); line-height: 1.7; }
-.verdict-block strong { color: var(--fg); }
-
-/* Delivered items */
-.delivered-list { list-style: none; margin-bottom: 20px; }
-.delivered-list li {
-  display: flex; align-items: flex-start; gap: 10px;
-  font-size: 13.5px; color: var(--fg2); padding: 8px 0;
-  border-bottom: 1px solid var(--border);
-}
-.delivered-list li:last-child { border-bottom: none; }
-.delivered-list .check { color: var(--green); font-size: 14px; flex-shrink: 0; margin-top: 1px; }
-.delivered-list .done { font-weight: 600; color: var(--fg); }
-
-/* Recommendation block */
-.rec-block {
-  background: var(--amber-bg); border: 1px solid color-mix(in srgb, var(--amber) 25%, transparent);
-  border-radius: var(--r); padding: 22px 24px; margin-bottom: 28px;
-}
-.rec-block h3 { font-family: 'Fraunces', serif; font-size: 16px; font-weight: 600; color: var(--amber); margin-bottom: 14px; }
-.rec-item {
-  display: flex; justify-content: space-between; align-items: flex-start;
-  gap: 16px; padding: 10px 0; border-bottom: 1px solid color-mix(in srgb, var(--amber) 15%, transparent);
-}
-.rec-item:last-child { border-bottom: none; padding-bottom: 0; }
-.rec-item-name { font-size: 14px; font-weight: 600; color: var(--fg); margin-bottom: 2px; }
-.rec-item-desc { font-size: 12.5px; color: var(--fg2); }
-.rec-item-price { font-family: 'DM Mono', monospace; font-size: 13px; color: var(--amber); white-space: nowrap; flex-shrink: 0; }
-
-/* Services menu */
-.menu-intro { font-size: 14px; color: var(--fg2); margin-bottom: 24px; line-height: 1.65; }
-.menu-divider {
-  font-family: 'DM Mono', monospace; font-size: 10px;
-  letter-spacing: 2px; text-transform: uppercase;
-  color: var(--fg3); margin-bottom: 10px; margin-top: 28px;
-}
-.service-btn {
-  display: flex; justify-content: space-between; align-items: flex-start;
-  gap: 16px; padding: 14px 16px;
-  background: var(--bg2); border: 1px solid var(--border);
-  border-radius: var(--r); margin-bottom: 8px;
-  cursor: pointer; transition: border-color .15s, background .15s;
-  width: 100%; text-align: left;
-  font-family: inherit; font-size: inherit; color: inherit;
-}
-.service-btn:hover { border-color: var(--accent); }
-.service-btn[aria-checked="true"] { background: var(--accent-bg); border-color: var(--accent); }
-.service-btn[aria-checked="true"] .service-name { color: var(--accent); }
-.service-left { flex: 1; min-width: 0; }
-.service-name { font-size: 14px; font-weight: 600; color: var(--fg); margin-bottom: 3px; }
-.service-variant { font-size: 11px; font-weight: 600; letter-spacing: 1px; text-transform: uppercase; color: var(--fg3); margin-bottom: 2px; }
-.service-desc { font-size: 12.5px; color: var(--fg3); line-height: 1.5; }
-.service-price {
-  font-family: 'DM Mono', monospace; font-size: 14px; font-weight: 500;
-  color: var(--accent); white-space: nowrap; flex-shrink: 0; padding-top: 2px;
+.btn-copy-email:hover{opacity:0.88}
+.btn-close-email{
+  background:none;border:1px solid var(--border);color:var(--fg3);
+  border-radius:20px;padding:8px 18px;font-size:13px;cursor:pointer;font-family:inherit;
 }
 
-/* Total bar */
-.total-bar {
-  position: sticky;
-  bottom: env(safe-area-inset-bottom, 0px);
-  background: var(--accent); color: white;
-  padding: 12px 20px;
-  margin-inline: -20px;
-  display: flex; justify-content: space-between; align-items: center;
-  gap: 12px; flex-wrap: wrap; z-index: 200;
-  transform: translateY(100%); transition: transform .25s;
+.gap-row{
+  display:grid;grid-template-columns:160px 1fr 160px;
+  gap:16px;align-items:start;
+  background:var(--bg2);border:1px solid var(--border);
+  border-radius:var(--r);padding:14px 18px;margin-bottom:10px;
 }
-.total-bar.visible { transform: translateY(0); }
-.total-bar-meta { display: flex; flex-direction: column; gap: 2px; }
-.total-bar-count { font-size: 12px; opacity: 0.85; }
-.total-bar-amount { font-family: 'DM Mono', monospace; font-size: 20px; font-weight: 500; }
-.total-bar-actions { display: flex; gap: 8px; align-items: center; flex-wrap: wrap; }
-.btn-clear {
-  background: none; border: 1px solid rgba(255,255,255,0.4);
-  color: white; font-size: 12px; padding: 5px 12px;
-  border-radius: 20px; cursor: pointer; font-family: inherit;
-}
-.btn-whatsapp {
-  background: white; color: var(--accent);
-  border: none; font-size: 13px; font-weight: 600;
-  padding: 7px 16px; border-radius: 20px;
-  cursor: pointer; font-family: inherit; display: flex; align-items: center; gap: 6px;
-  transition: opacity .15s;
-}
-.btn-whatsapp:hover { opacity: 0.9; }
+@media(max-width:600px){.gap-row{grid-template-columns:1fr}}
+.gap-label{font-size:10px;font-weight:600;letter-spacing:1.5px;text-transform:uppercase;color:var(--fg3);margin-bottom:4px}
+.gap-row p{font-size:13px;color:var(--fg2);line-height:1.55}
+.gap-row strong{font-size:13.5px;color:var(--fg)}
 
-/* Upsell */
-.upsell-msg {
-  background: var(--bg2); border: 1px solid var(--border);
-  color: var(--fg2); font-size: 13px; padding: 12px 16px;
-  border-radius: 8px; margin-top: 10px; display: none; line-height: 1.6;
+.timeline{padding-left:20px;border-left:2px solid var(--border)}
+.tl-item{position:relative;margin-bottom:28px;padding-left:16px}
+.tl-item::before{
+  content:'';position:absolute;left:-26px;top:4px;
+  width:12px;height:12px;border-radius:50%;
+  background:var(--accent);border:2px solid var(--bg);outline:2px solid var(--accent);
 }
-.upsell-msg.visible { display: block; }
+.tl-phase{font-family:'DM Mono',monospace;font-size:10px;letter-spacing:1.5px;text-transform:uppercase;color:var(--accent);margin-bottom:4px}
+.tl-title{font-family:'Fraunces',serif;font-size:15px;font-weight:600;color:var(--fg);margin-bottom:5px}
+.tl-body{font-size:13.5px;color:var(--fg2);line-height:1.6}
 
-/* Passport button */
-.passport-btn-wrap { display: none; margin-top: 24px; }
-.btn-passport {
-  background: var(--accent); color: white;
-  border: none; border-radius: 10px;
-  padding: 13px 26px; font-family: inherit;
-  font-size: 15px; font-weight: 600;
-  cursor: pointer; display: inline-flex;
-  align-items: center; gap: 10px; transition: background .15s;
+.pos-block{
+  border-left:3px solid var(--accent);padding:14px 18px;
+  background:var(--accent-bg);border-radius:0 var(--r) var(--r) 0;margin-bottom:12px;
 }
-.btn-passport:hover { background: var(--accent2); }
-.passport-note { font-size: 12px; color: var(--fg3); margin-top: 8px; }
+.pos-block.plum{border-left-color:var(--plum);background:var(--plum-bg)}
+.pos-block h4{font-family:'Fraunces',serif;font-size:14px;font-weight:600;color:var(--accent);margin-bottom:5px}
+.pos-block.plum h4{color:var(--plum)}
+.pos-block p{font-size:13.5px;color:var(--fg2);line-height:1.6}
 
-/* Group headers */
-.group-header {
-  font-family: 'Fraunces', serif; font-size: 15px; font-weight: 600;
-  margin-bottom: 14px; margin-top: 8px; padding: 8px 14px;
-  border-radius: 8px; display: inline-block;
+.verdict-block{background:var(--bg2);border:1px solid var(--border);border-radius:var(--r);padding:18px 22px;margin-bottom:12px}
+.verdict-block-label{font-family:'DM Mono',monospace;font-size:10px;letter-spacing:2px;text-transform:uppercase;color:var(--fg3);margin-bottom:6px}
+.verdict-block p{font-size:14px;color:var(--fg2);line-height:1.7}
+.verdict-block strong{color:var(--fg)}
+
+.rede-card{background:var(--bg2);border:1px solid var(--border);border-radius:var(--r);overflow:hidden;margin-bottom:20px}
+.rede-head{padding:18px 22px 14px;border-bottom:1px solid var(--border);display:flex;align-items:flex-start;gap:14px}
+.rede-icon{width:44px;height:44px;border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:20px;flex-shrink:0;margin-top:2px}
+.rede-icon-teal{background:var(--accent-bg)}
+.rede-icon-plum{background:var(--plum-bg)}
+.rede-icon-amber{background:var(--amber-bg)}
+.rede-title{font-family:'Fraunces',serif;font-size:16px;font-weight:600;color:var(--fg);margin-bottom:3px;line-height:1.3}
+.rede-subtitle{font-size:12.5px;color:var(--fg3)}
+.rede-body{padding:16px 22px}
+.rede-why{font-size:10px;font-weight:600;letter-spacing:1.5px;text-transform:uppercase;color:var(--fg3);margin-bottom:6px}
+.rede-body p{font-size:13.5px;color:var(--fg2);line-height:1.65;margin-bottom:10px}
+.rede-body p:last-child{margin-bottom:0}
+.rede-contact{
+  padding:12px 22px 16px;border-top:1px solid var(--border);background:var(--bg3);
+  display:flex;align-items:flex-start;gap:10px;flex-wrap:wrap;
 }
-.group-green { background: var(--green-bg); color: var(--green); }
-.group-amber { background: var(--amber-bg); color: var(--amber); }
-.group-blue  { background: var(--accent-bg); color: var(--accent); }
+.rede-contact-label{font-size:10px;font-weight:600;letter-spacing:1.5px;text-transform:uppercase;color:var(--fg3);margin-bottom:3px}
+.rede-contact-name{font-size:13.5px;font-weight:600;color:var(--fg)}
+.rede-contact-desc{font-size:12px;color:var(--fg3)}
+.contact-block{flex:1;min-width:160px}
+.rede-footer{padding:10px 22px 14px;border-top:1px solid var(--border);display:flex;gap:8px;flex-wrap:wrap}
 
-/* Utilities */
-.mt-sm { margin-top: 8px; }
-.mt    { margin-top: 16px; }
-.mb-sm { margin-bottom: 8px; }
-.mb    { margin-bottom: 16px; }
-.mono  { font-family: 'DM Mono', monospace; font-size: 12px; color: var(--fg3); }
+.ref-card{
+  border-left:3px solid var(--plum);padding:14px 18px;
+  background:var(--plum-bg);border-radius:0 var(--r) var(--r) 0;margin-bottom:12px;
+}
+.ref-card h4{font-family:'Fraunces',serif;font-size:14px;font-weight:600;color:var(--plum);margin-bottom:5px}
+.ref-card p{font-size:13.5px;color:var(--fg2);line-height:1.6}
+
+/* Contracted block */
+.contracted-block{
+  background:var(--green-bg);border:1px solid color-mix(in srgb,var(--green) 25%,transparent);
+  border-radius:var(--r);padding:22px 24px;margin-bottom:28px;
+}
+.contracted-block h3{font-family:'Fraunces',serif;font-size:16px;font-weight:600;color:var(--green);margin-bottom:16px}
+.contracted-item{
+  display:flex;justify-content:space-between;align-items:flex-start;
+  gap:16px;padding:10px 0;border-bottom:1px solid color-mix(in srgb,var(--green) 15%,transparent);
+}
+.contracted-item:last-of-type{border-bottom:none;padding-bottom:0}
+.contracted-item-name{font-size:14px;font-weight:600;color:var(--fg);margin-bottom:2px}
+.contracted-item-desc{font-size:12.5px;color:var(--fg2)}
+.contracted-item-price{font-family:'DM Mono',monospace;font-size:13px;color:var(--green);white-space:nowrap;flex-shrink:0}
+.contracted-total{
+  display:flex;justify-content:space-between;align-items:center;
+  padding-top:14px;margin-top:6px;border-top:2px solid color-mix(in srgb,var(--green) 30%,transparent);
+}
+.contracted-total-label{font-size:13px;font-weight:600;color:var(--fg)}
+.contracted-total-value{font-family:'DM Mono',monospace;font-size:18px;font-weight:700;color:var(--green)}
+
+/* CAPES block */
+.capes-phase{
+  background:var(--bg2);border:1px solid var(--border);
+  border-radius:var(--r);padding:18px 22px;margin-bottom:10px;
+}
+.capes-phase-label{font-family:'DM Mono',monospace;font-size:10px;letter-spacing:1.5px;text-transform:uppercase;color:var(--accent);margin-bottom:6px}
+.capes-phase h4{font-family:'Fraunces',serif;font-size:15px;font-weight:600;color:var(--fg);margin-bottom:8px}
+.capes-phase p{font-size:13.5px;color:var(--fg2);line-height:1.6}
+.capes-phase ul{padding-left:18px;margin-top:6px}
+.capes-phase li{font-size:13.5px;color:var(--fg2);line-height:1.6;margin-bottom:4px}
+
+.menu-intro{font-size:14px;color:var(--fg2);margin-bottom:24px;line-height:1.65}
+.menu-divider{
+  font-family:'DM Mono',monospace;font-size:10px;
+  letter-spacing:2px;text-transform:uppercase;
+  color:var(--fg3);margin-bottom:10px;margin-top:28px;
+}
+.service-btn{
+  display:flex;justify-content:space-between;align-items:flex-start;
+  gap:16px;padding:14px 16px;
+  background:var(--bg2);border:1px solid var(--border);
+  border-radius:var(--r);margin-bottom:8px;
+  cursor:pointer;transition:border-color .15s,background .15s;
+  width:100%;text-align:left;font-family:inherit;font-size:inherit;color:inherit;
+}
+.service-btn:hover{border-color:var(--accent)}
+.service-btn[aria-checked="true"]{background:var(--accent-bg);border-color:var(--accent)}
+.service-btn[aria-checked="true"] .service-name{color:var(--accent)}
+.service-left{flex:1;min-width:0}
+.service-name{font-size:14px;font-weight:600;color:var(--fg);margin-bottom:3px}
+.service-variant{font-size:11px;font-weight:600;letter-spacing:1px;text-transform:uppercase;color:var(--fg3);margin-bottom:2px}
+.service-desc{font-size:12.5px;color:var(--fg3);line-height:1.5}
+.service-price{font-family:'DM Mono',monospace;font-size:14px;font-weight:500;color:var(--accent);white-space:nowrap;flex-shrink:0;padding-top:2px}
+
+.total-bar{
+  position:sticky;bottom:env(safe-area-inset-bottom,0px);
+  background:var(--accent);color:white;
+  padding:12px 20px;margin-inline:-20px;
+  display:flex;justify-content:space-between;align-items:center;
+  gap:12px;flex-wrap:wrap;z-index:200;
+  transform:translateY(100%);transition:transform .25s;
+}
+.total-bar.visible{transform:translateY(0)}
+.total-bar-meta{display:flex;flex-direction:column;gap:2px}
+.total-bar-count{font-size:12px;opacity:0.85}
+.total-bar-amount{font-family:'DM Mono',monospace;font-size:20px;font-weight:500}
+.total-bar-actions{display:flex;gap:8px;align-items:center;flex-wrap:wrap}
+.btn-clear{background:none;border:1px solid rgba(255,255,255,0.4);color:white;font-size:12px;padding:5px 12px;border-radius:20px;cursor:pointer;font-family:inherit}
+.btn-whatsapp{
+  background:white;color:var(--accent);border:none;font-size:13px;font-weight:600;
+  padding:7px 16px;border-radius:20px;cursor:pointer;font-family:inherit;
+  display:flex;align-items:center;gap:6px;transition:opacity .15s;
+}
+.btn-whatsapp:hover{opacity:0.9}
+
+.upsell-msg{
+  background:var(--bg2);border:1px solid var(--border);
+  color:var(--fg2);font-size:13px;padding:12px 16px;
+  border-radius:8px;margin-top:10px;display:none;line-height:1.6;
+}
+.upsell-msg.visible{display:block}
+
+.passport-btn-wrap{display:none;margin-top:24px}
+.btn-passport{
+  background:var(--accent);color:white;border:none;border-radius:10px;
+  padding:13px 26px;font-family:inherit;font-size:15px;font-weight:600;
+  cursor:pointer;display:inline-flex;align-items:center;gap:10px;transition:background .15s;
+}
+.btn-passport:hover{background:var(--accent2)}
+.passport-note{font-size:12px;color:var(--fg3);margin-top:8px}
+
+.group-header{
+  font-family:'Fraunces',serif;font-size:15px;font-weight:600;
+  margin-bottom:14px;margin-top:8px;padding:8px 14px;
+  border-radius:8px;display:inline-block;
+}
+.group-green{background:var(--green-bg);color:var(--green)}
+.group-amber{background:var(--amber-bg);color:var(--amber)}
+.group-blue{background:var(--accent-bg);color:var(--accent)}
+.group-plum{background:var(--plum-bg);color:var(--plum)}
+
+.mt-sm{margin-top:8px} .mt{margin-top:16px}
+.mb-sm{margin-bottom:8px} .mb{margin-bottom:16px}
+.mono{font-family:'DM Mono',monospace;font-size:12px;color:var(--fg3)}
 </style>
 
 <!-- NAV -->
-<nav class="nav-top" role="navigation" aria-label="Seções">
+<nav class="nav-top" role="navigation" aria-label="Secoes">
   <a href="#sobre">Perfil</a>
+  <a href="#contratado">Contratado</a>
   <a href="#vagas">Vagas</a>
+  <a href="#capes">CAPES</a>
+  <a href="#rede">Rede Academica</a>
   <a href="#gaps">Gaps</a>
   <a href="#posicionamento">Posicionamento</a>
-  <a href="#plano">Plano de ação</a>
-  <a href="#sintese">Síntese</a>
-  <a href="#servicos">Próximos passos</a>
+  <a href="#plano">Plano de acao</a>
+  <a href="#sintese">Sintese</a>
+  <a href="#servicos">Proximo passo</a>
 </nav>
 
 <!-- HERO -->
 <header class="hero" id="topo">
-  <p class="hero-eyebrow">Diagnóstico Internacional · PhD · Encontro 1</p>
-  <h1>Uma trajetória, três caminhos possíveis de PhD.</h1>
-  <p class="hero-sub">O objetivo agora é transformar sua trajetória clínica e acadêmica em uma estratégia internacional clara.</p>
+  <p class="hero-eyebrow">Diagnostico Internacional · PhD · Encontro 1</p>
+  <h1>Uma trajetoria, dois eixos prioritarios de PhD.</h1>
+  <p class="hero-sub">Trabalho, saude e reabilitacao de um lado. Fisioterapia neonatal e pediatrica do outro. Cada eixo com vagas concretas e uma rede academica para construir.</p>
   <div class="hero-pills">
-    <span class="pill pill-accent">Reabilitação Cardiovascular</span>
-    <span class="pill pill-accent">Fisioterapia Neonatal e Pediátrica</span>
-    <span class="pill">Saúde Ocupacional</span>
-    <span class="pill">Burnout e Sofrimento Psíquico</span>
+    <span class="pill pill-accent">Eixo 2 · Trabalho e Saude</span>
+    <span class="pill pill-plum">Eixo 3 · Reabilitacao Neonatal e Pediatrica</span>
+    <span class="pill">Saude Ocupacional</span>
+    <span class="pill">Burnout · Psicodinamica</span>
     <span class="pill">PhD na Europa</span>
   </div>
 </header>
@@ -406,63 +418,99 @@ a:hover { text-decoration: underline; }
 <div class="stats-strip">
   <div class="stat-card">
     <div class="stat-num">12</div>
-    <div class="stat-label">vagas mapeadas Europa, RU e Canadá</div>
+    <div class="stat-label">vagas mapeadas nos eixos 2 e 3</div>
   </div>
   <div class="stat-card">
-    <div class="stat-num">6</div>
-    <div class="stat-label">vagas com ação imediata</div>
+    <div class="stat-num">3</div>
+    <div class="stat-label">grupos de pesquisa para contato direto</div>
   </div>
   <div class="stat-card">
     <div class="stat-num">Fiocruz</div>
-    <div class="stat-label">instituição com projeção internacional</div>
+    <div class="stat-label">instituicao com projecao internacional</div>
   </div>
   <div class="stat-card">
     <div class="stat-num">Out/26</div>
-    <div class="stat-label">4 prazos em outubro</div>
+    <div class="stat-label">prazos mais urgentes este mes</div>
   </div>
 </div>
 
 <!-- PERFIL -->
 <section class="section" id="sobre">
-  <p class="section-label">Quem você é</p>
-  <h2>Perfil acadêmico e clínico</h2>
+  <p class="section-label">Quem voce e</p>
+  <h2>Perfil academico e clinico</h2>
 
   <div class="callout callout-blue mb">
     <span class="callout-icon">💡</span>
     <div>
-      <strong>O que torna sua trajetória estratégica</strong>
-      <p>Sua trajetória combina experiências que normalmente aparecem em linhas distintas: reabilitação cardiovascular, fisioterapia neonatal e pediátrica, e pesquisa sobre saúde mental e trabalho. Essa combinação permite construir diferentes narrativas de candidatura sem perder coerência.</p>
+      <strong>O que torna sua trajetoria estrategica</strong>
+      <p>Sua trajetoria combina experiencias que raramente aparecem juntas numa mesma pesquisadora: reabilitacao cardiovascular, fisioterapia neonatal e pediatrica, e pesquisa em saude mental e trabalho. Essa combinacao permite construir diferentes narrativas de candidatura sem perder coerencia, e os eixos 2 e 3 sao onde essa forca aparece com mais clareza.</p>
     </div>
   </div>
 
   <div class="g2">
     <div>
       <div class="card mb-sm">
-        <div class="card-title">Graduação em Fisioterapia · UFRJ (2022)</div>
-        <p>Formação em uma das principais universidades federais do país, com IC avaliada como Excelente, monitoria em cardiologia e neuropediatria, e atuação em dois hospitais universitários de referência: HUCFF e IPPMG.</p>
+        <div class="card-title">Graduacao em Fisioterapia · UFRJ (2022)</div>
+        <p>Formacao em uma das principais universidades federais do pais, com IC avaliada como Excelente, monitoria em cardiologia e neuropediatria, e atuacao em dois hospitais universitarios de referencia: HUCFF e IPPMG.</p>
       </div>
       <div class="card mb-sm">
         <div class="card-title">Mestrado Profissional · Fiocruz/EPSJV (2024)</div>
-        <p>"Síndrome de Burnout como expressão subjetiva de sofrimento em relação ao trabalho" — revisão integrativa de literatura, ancorada na Psicodinâmica do Trabalho de Dejours. Defendida em julho de 2024 com banca interdisciplinar (Fiocruz e UFF).</p>
+        <p>"Sindrome de Burnout como expressao subjetiva de sofrimento em relacao ao trabalho": revisao integrativa de literatura, ancorada na Psicodinamica do Trabalho de Dejours. Defendida em julho de 2024 com banca interdisciplinar (Fiocruz e UFF).</p>
       </div>
       <div class="card">
-        <div class="card-title">Especializações (2022)</div>
-        <p>UTI Adulto (390h) e Fisioterapia Intensiva Neonatal e Pediátrica (390h), ambas pelo UniAmérica, concluídas de forma simultânea.</p>
+        <div class="card-title">Especializacoes (2022)</div>
+        <p>UTI Adulto (390h) e Fisioterapia Intensiva Neonatal e Pediatrica (390h), ambas pelo UniAmerica, concluidas de forma simultanea.</p>
       </div>
     </div>
     <div>
       <div class="card mb-sm">
         <div class="card-title">Pesquisa em cardiologia · HUCFF/UFRJ (2018)</div>
-        <p>Projeto Coração com Prof. Michel Reis. Reabilitação cardiovascular ambulatorial, teste cardiopulmonar (VO2pico), monitorização de FC, PA, SpO2 e Borg. Resultado apresentado no SIAC 2018 (correlação PImáx e VO2pico em jogadoras de futebol profissional).</p>
+        <p>Projeto Coracao com Prof. Michel Reis. Reabilitacao cardiovascular ambulatorial, teste cardiopulmonar (VO2pico), monitorizacao de FC, PA, SpO2 e Borg. Resultado apresentado no SIAC 2018.</p>
       </div>
       <div class="card mb-sm">
         <div class="card-title">IC em pediatria · IPPMG/UFRJ (2019 a 2020)</div>
-        <p>Desenvolvimento motor de lactente com meningomielocele submetido à cirurgia intrauterina. Uso da Escala Motora Infantil de Alberta (AIMS). Apresentado no SIAC 2019. Avaliação Excelente.</p>
+        <p>Desenvolvimento motor de lactente com meningomielocele submetido a cirurgia intrauterina. Uso da Escala Motora Infantil de Alberta (AIMS). Apresentado no SIAC 2019. Avaliacao Excelente.</p>
       </div>
       <div class="card">
         <div class="card-title">Outros destaques</div>
-        <p>Fisiologia da Respiração (laboratório, 2017), extensão em neuropediatria, monitoria de anatomia, XII JCAB (8º lugar), comissão organizadora do V Seminário Discente EPSJV/Fiocruz.</p>
+        <p>Fisiologia da Respiracao (laboratorio, 2017), extensao em neuropediatria, monitoria de anatomia, XII JCAB (8 lugar), comissao organizadora do V Seminario Discente EPSJV/Fiocruz.</p>
       </div>
+    </div>
+  </div>
+</section>
+
+<!-- CONTRATADO -->
+<section class="section" id="contratado">
+  <p class="section-label">O que ja foi contratado</p>
+  <h2>Sua jornada comecou aqui</h2>
+
+  <div class="contracted-block">
+    <h3>Servicos contratados neste ciclo</h3>
+    <div class="contracted-item">
+      <div>
+        <div class="contracted-item-name">Encontro estrategico · 60 minutos</div>
+        <div class="contracted-item-desc">Sessao ao vivo para diagnostico completo de perfil, foco nos eixos 2 e 3, curadoria de vagas e plano de acao semana a semana.</div>
+      </div>
+      <div class="contracted-item-price">R$ 180</div>
+    </div>
+    <div class="contracted-item">
+      <div>
+        <div class="contracted-item-name">Acompanhamento da primeira candidatura</div>
+        <div class="contracted-item-desc">CV adaptado para uma vaga concreta + carta de motivacao completa com ate 2 rodadas de revisao. Voce escolhe a vaga prioritaria.</div>
+      </div>
+      <div class="contracted-item-price">R$ 350</div>
+    </div>
+    <div class="contracted-total">
+      <div class="contracted-total-label">Total contratado</div>
+      <div class="contracted-total-value">R$ 530</div>
+    </div>
+  </div>
+
+  <div class="callout callout-blue">
+    <span class="callout-icon">📋</span>
+    <div>
+      <strong>Proximo passo conjunto</strong>
+      <p>Depois de definir qual vaga priorizar (POLARIS em 05/10, Bristol em 21/10 ou TU Delft em 19/10), iniciamos o acompanhamento da candidatura incluido no contrato. Qualquer duvida antes disso, manda mensagem.</p>
     </div>
   </div>
 </section>
@@ -470,92 +518,91 @@ a:hover { text-decoration: underline; }
 <!-- VAGAS -->
 <section class="section" id="vagas">
   <p class="section-label">Mapeamento de oportunidades</p>
-  <h2>Vagas mapeadas — Europa, Reino Unido e Canadá</h2>
-
-  <div class="callout callout-amber mb">
-    <span class="callout-icon">📅</span>
-    <div>
-      <strong>Sobre contato prévio com supervisores</strong>
-      <p>Quando o edital permitir ou incentivar contato prévio, uma mensagem curta ao supervisor pode ajudar a confirmar aderência, esclarecer dúvidas e evitar uma candidatura desalinhada. Verifique sempre o edital antes de entrar em contato.</p>
-    </div>
-  </div>
+  <h2>Vagas organizadas por tipo de candidatura</h2>
 
   <div class="callout callout-blue mb">
-    <span class="callout-icon">🔍</span>
+    <span class="callout-icon">🗺️</span>
     <div>
-      <strong>Nota de verificação</strong>
-      <p>Oportunidades verificadas em 29/09/2026. Editais, financiamento e prazos podem ser alterados pelas instituições. Confira sempre a página oficial antes da submissão.</p>
+      <strong>Como as vagas estao organizadas</strong>
+      <p>Vagas com projeto definido nao pedem proposta propria: a instituicao define o tema e voce se candidata ao projeto. Vagas que pedem proposta dentro do projeto pedem um plano alinhado a um tema anunciado. Programas para projeto proprio exigem que voce chegue com uma pergunta de pesquisa e uma supervisora disposta a orientar.</p>
     </div>
   </div>
 
-  <!-- GRUPO 1 -->
-  <div class="group-header group-green">Grupo 1 · Aplicar agora</div>
+  <!-- GRUPO 1: VAGAS COM PROJETO DEFINIDO -->
+  <div class="group-header group-green" style="margin-bottom:6px">Grupo 1 · Vagas com projeto definido</div>
+  <p style="font-size:13px;color:var(--fg3);margin-bottom:20px">Nao e preciso chegar com proposta propria. O projeto ja existe: voce se candidata a ele.</p>
 
+  <!-- TU Delft -->
   <div class="vacancy">
     <div class="vacancy-head">
-      <div class="vacancy-title">Co-Designing JITAIs for Sustained Behavioural Change in Cardiac Rehabilitation</div>
+      <div class="vacancy-title">PhD Safe and Effective Handover Practices in Intensive Care Units</div>
       <div class="vacancy-tags">
-        <span class="badge badge-green">Aderência: Alta</span>
-        <span class="badge badge-green">Viabilidade: Alta</span>
-        <span class="badge badge-blue">Ação: Aplicar</span>
+        <span class="badge badge-green">Financiado</span>
+        <span class="badge badge-green">Aderencia: Alta</span>
+        <span class="badge badge-red">Prazo: 19/10/2026</span>
       </div>
     </div>
     <div class="vacancy-meta">
-      <span class="meta-item">🏛 Universidade de Manchester, RU</span>
-      <span class="meta-item">📅 15/10/2026</span>
-      <span class="meta-item">💰 Financiado (NIHR)</span>
+      <span class="meta-item">🏛 TU Delft, Holanda</span>
+      <span class="meta-item">📅 19/10/2026</span>
+      <span class="meta-item">💰 3.204 a 4.051 euros brutos/mes, 4 anos</span>
+      <span class="meta-item">✉️ Recruitment-tbm@tudelft.nl</span>
     </div>
     <div class="vacancy-body">
       <div>
-        <p class="vb-label">Aderência ao perfil</p>
-        <p class="vb-green">Reabilitação cardíaca, mudança comportamental e saúde mental em uma mesma vaga. A dissertação sobre burnout oferece arcabouço teórico coerente para uma intervenção que aborda sofrimento e adesão. A pesquisa do SIAC 2018 conecta o background clínico ao objeto do projeto.</p>
+        <p class="vb-label">Aderencia ao perfil</p>
+        <p class="vb-green">Handover em UTI, seguranca do paciente, fadiga e carga de trabalho. Formacao em saude, engenharia, Human Factors ou area relacionada. Experiencia em UTI adulto e neonatal/pediatrica e rara entre candidatas de pesquisa pura: voce viveu o que vai estudar. Combinar clinica com mestrado em sofrimento no trabalho e o perfil que esse projeto busca.</p>
       </div>
       <div>
-        <p class="vb-label">O que observar</p>
-        <p class="vb-amber">O campo de atuação é no Paquistão. Avalie se isso é viável antes de investir tempo na candidatura. Componentes quantitativos devem aparecer como objetivo de aprendizado no doutorado, não como experiência prévia.</p>
+        <p class="vb-label">O que verificar</p>
+        <p class="vb-amber">Holandês priorizado para o campo: confirmar com Ece Ureten ou Perla Marang-van de Mheen se e bloqueador ou apenas preferencial. Sem proposta propria: pedem CV, carta de uma pagina e amostra de escrita de ate duas paginas.</p>
       </div>
     </div>
     <div class="vacancy-footer">
-      <a class="btn-link" href="https://www.findaphd.com/phds/project/co-designing-just-in-time-adaptive-interventions-jitais-for-sustained-behavioural-change-in-cardiac-rehabilitation/?p174977" target="_blank" rel="noopener">🔗 Ver oportunidade</a>
+      <a class="btn-link" href="https://www.academictransfer.com/en/jobs/364113/" target="_blank" rel="noopener">🔗 Ver vaga TU Delft</a>
     </div>
   </div>
 
+  <!-- KTH/KI -->
   <div class="vacancy">
     <div class="vacancy-head">
-      <div class="vacancy-title">Adaptive Virtual-Reality Exergaming for Physical and Cognitive Health in Older Adults</div>
+      <div class="vacancy-title">Doctoral student · Ergonomics, Digital Technology and Work-Related Musculoskeletal Disorders</div>
       <div class="vacancy-tags">
-        <span class="badge badge-green">Aderência: Alta</span>
-        <span class="badge badge-green">Viabilidade: Alta</span>
-        <span class="badge badge-blue">Ação: Aplicar</span>
+        <span class="badge badge-green">Financiado</span>
+        <span class="badge badge-amber">Barreira: sueco</span>
+        <span class="badge badge-red">Prazo: 08/10/2026</span>
       </div>
     </div>
     <div class="vacancy-meta">
-      <span class="meta-item">🏛 Cardiff University, País de Gales</span>
-      <span class="meta-item">📅 21/10/2026</span>
-      <span class="meta-item">💰 Competitivo, aberto a internacionais</span>
+      <span class="meta-item">🏛 KTH / Karolinska Institutet, Suecia</span>
+      <span class="meta-item">📅 08/10/2026</span>
+      <span class="meta-item">💰 Emprego doctoral, 4 anos, escala institucional</span>
+      <span class="meta-item">✉️ liyun.yang@ki.se · Ref: STOD 2-3817/2026</span>
     </div>
     <div class="vacancy-body">
       <div>
-        <p class="vb-label">Aderência ao perfil</p>
-        <p class="vb-green">Reabilitação, mobilidade, equilíbrio, análise de marcha e métodos mistos. Cardiff é universidade do Grupo Russell. A formação em fisioterapia é central no projeto, não periférica.</p>
+        <p class="vb-label">Aderencia ao perfil</p>
+        <p class="vb-green">Ergonomia e tecnologia digital para trabalho sustentavel, incluindo sensores, biofeedback e organizacao do trabalho fisico. Fisioterapia e fator de merito. O mestrado Fiocruz conecta sofrimento, trabalho e corpo: exatamente o cruzamento tematico do projeto.</p>
       </div>
       <div>
-        <p class="vb-label">O que observar</p>
-        <p class="vb-amber">Tem componente de wearables e análise computacional. Posicione como área de desenvolvimento no doutorado. O foco principal da candidatura deve ser a experiência em reabilitação funcional.</p>
+        <p class="vb-label">O que verificar antes de candidatar</p>
+        <p class="vb-amber">Sueco e ingles muito bons sao requisitos. Experiencia em mensuracao tecnica de exposicao ergonomica e estatistica tambem. Consulte Liyun Yang por e-mail antes de preparar o pacote completo: 15 minutos de investimento para confirmar se o idioma e realmente bloqueador.</p>
       </div>
     </div>
     <div class="vacancy-footer">
-      <a class="btn-link" href="https://www.findaphd.com/phds/project/adaptive-virtual-reality-exergaming-for-physical-and-cognitive-health-in-older-adults/?p175230" target="_blank" rel="noopener">🔗 Ver oportunidade</a>
+      <a class="btn-link" href="https://kidoktorand.varbi.com/en/what:job/jobID:970550/" target="_blank" rel="noopener">🔗 Ver vaga KI</a>
+      <button class="btn-email" onclick="abrirEmail('kth')">✉️ Rascunho de e-mail</button>
     </div>
   </div>
 
+  <!-- Bristol -->
   <div class="vacancy">
     <div class="vacancy-head">
       <div class="vacancy-title">Decoding Early Brain and Movement Signals to Predict Outcomes after Birth Asphyxia</div>
       <div class="vacancy-tags">
-        <span class="badge badge-green">Aderência: Alta</span>
-        <span class="badge badge-green">Viabilidade: Alta</span>
-        <span class="badge badge-blue">Ação: Aplicar</span>
+        <span class="badge badge-green">Financiado</span>
+        <span class="badge badge-green">Aderencia: Alta</span>
+        <span class="badge badge-red">Prazo: 21/10/2026</span>
       </div>
     </div>
     <div class="vacancy-meta">
@@ -565,12 +612,12 @@ a:hover { text-decoration: underline; }
     </div>
     <div class="vacancy-body">
       <div>
-        <p class="vb-label">Aderência ao perfil</p>
-        <p class="vb-green">A IC com AIMS em meningomielocele cria uma ponte direta para avaliação motora em asfixia perinatal. Você já trabalhou com lactente no contexto neonatal e aplicou um instrumento de mensuração motora padronizado com literatura internacional consolidada.</p>
+        <p class="vb-label">Aderencia ao perfil</p>
+        <p class="vb-green">A IC com AIMS em meningomielocele cria uma ponte direta para avaliacao motora em asfixia perinatal. Voce ja trabalhou com lactente em contexto neonatal e aplicou instrumento de mensuracao motora padronizado com literatura internacional consolidada.</p>
       </div>
       <div>
         <p class="vb-label">O que observar</p>
-        <p class="vb-amber">O projeto tem componentes de neurociência e medidas quantitativas. Adapte a narrativa para destacar avaliação motora objetiva e pesquisa clínica. Apresente a AIMS como prova de capacidade de mensurar outcomes motores em contexto real.</p>
+        <p class="vb-amber">Componentes de neurociencia e medidas quantitativas. Adapte a narrativa para destacar avaliacao motora objetiva. Apresente a AIMS como prova de capacidade de mensurar outcomes motores em contexto real.</p>
       </div>
     </div>
     <div class="vacancy-footer">
@@ -578,57 +625,29 @@ a:hover { text-decoration: underline; }
     </div>
   </div>
 
-  <div class="vacancy">
-    <div class="vacancy-head">
-      <div class="vacancy-title">How Does Extreme Muscle Disuse Affect Whole-Body Health? (Rehabilitation Sciences)</div>
-      <div class="vacancy-tags">
-        <span class="badge badge-green">Aderência: Alta</span>
-        <span class="badge badge-green">Viabilidade: Alta</span>
-        <span class="badge badge-blue">Ação: Aplicar</span>
-      </div>
-    </div>
-    <div class="vacancy-meta">
-      <span class="meta-item">🏛 University of Bath, RU</span>
-      <span class="meta-item">📅 21/10/2026</span>
-      <span class="meta-item">💰 Bolsa competitiva · £21.805/ano + mensalidade</span>
-    </div>
-    <div class="vacancy-body">
-      <div>
-        <p class="vb-label">Aderência ao perfil</p>
-        <p class="vb-green">Imobilidade, perda muscular, estimulação neuromuscular e pacientes saindo de UTI. O histórico em fisioterapia intensiva adulta é o core exato do projeto. A IC em fisiologia cardiorrespiratória contribui como base analítica.</p>
-      </div>
-      <div>
-        <p class="vb-label">O que observar</p>
-        <p class="vb-amber">A bolsa não cobre visto e mudança. Verifique os custos operacionais antes de submeter. O projeto tem componentes fisiológicos mais avançados: nomeie explicitamente como objetivo de formação.</p>
-      </div>
-    </div>
-    <div class="vacancy-footer">
-      <a class="btn-link" href="https://www.findaphd.com/phds/project/how-does-extreme-muscle-disuse-affect-whole-body-health/?p175412" target="_blank" rel="noopener">🔗 Ver oportunidade</a>
-    </div>
-  </div>
-
+  <!-- POLARIS -->
   <div class="vacancy">
     <div class="vacancy-head">
       <div class="vacancy-title">MSCA-DN PhD in Quality of Life and Resilience in Leukodystrophy (POLARIS)</div>
       <div class="vacancy-tags">
-        <span class="badge badge-green">Aderência: Alta</span>
-        <span class="badge badge-amber">Viabilidade: Condicionada</span>
-        <span class="badge badge-blue">Ação: Aplicar</span>
+        <span class="badge badge-green">Financiado · MSCA</span>
+        <span class="badge badge-amber">Gap: estatistica</span>
+        <span class="badge badge-red">Prazo: 05/10/2026 · URGENTE</span>
       </div>
     </div>
     <div class="vacancy-meta">
-      <span class="meta-item">🏛 Rede POLARIS · Universidade de Tübingen, Alemanha</span>
+      <span class="meta-item">🏛 Rede POLARIS · Universidade de Tubingen, Alemanha</span>
       <span class="meta-item">📅 05/10/2026</span>
       <span class="meta-item">💰 Contrato MSCA 3 anos com mobility allowance</span>
     </div>
     <div class="vacancy-body">
       <div>
-        <p class="vb-label">Aderência ao perfil</p>
-        <p class="vb-green">Aceita mestrado em reabilitação e saúde. Métodos qualitativos e quantitativos, qualidade de vida, saúde mental e patient-reported outcomes. A dissertação sobre sofrimento subjetivo oferece arcabouço conceitual direto para trabalhar com pacientes em condições crônicas.</p>
+        <p class="vb-label">Aderencia ao perfil</p>
+        <p class="vb-green">Aceita mestrado em reabilitacao e saude. Metodos mistos, qualidade de vida, saude mental e patient-reported outcomes. A dissertacao sobre sofrimento subjetivo oferece arcabouco conceitual direto para trabalhar com pacientes em condicoes cronicas e raras.</p>
       </div>
       <div>
         <p class="vb-label">O que observar</p>
-        <p class="vb-amber">Esperam experiência ou familiaridade com R, SPSS ou Stata. Esse gap precisa aparecer na candidatura com um plano concreto de desenvolvimento, não ser ignorado. Prazo em 05/10 — prioridade imediata.</p>
+        <p class="vb-amber">Esperam experiencia com R, SPSS ou Stata. Mencione o gap com plano concreto de desenvolvimento. Prazo em 05/10: prioridade desta semana.</p>
       </div>
     </div>
     <div class="vacancy-footer">
@@ -636,531 +655,980 @@ a:hover { text-decoration: underline; }
     </div>
   </div>
 
-  <!-- GRUPO 2 -->
-  <div class="group-header group-amber" style="margin-top:32px">Grupo 2 · Prazo mais longo ou condição específica</div>
+  <!-- GRUPO 2: VAGAS QUE PEDEM PROPOSTA DENTRO DO PROJETO -->
+  <div class="group-header group-blue" style="margin-top:36px;margin-bottom:6px">Grupo 2 · Vagas que pedem proposta dentro do projeto</div>
+  <p style="font-size:13px;color:var(--fg3);margin-bottom:20px">O tema geral existe, mas voce precisa chegar com um plano alinhado a ele. A proposta e sua, dentro do escopo anunciado.</p>
 
+  <!-- Stockholm -->
   <div class="vacancy">
     <div class="vacancy-head">
-      <div class="vacancy-title">GEMS 2027 · Cardiac Rehabilitation after Coronary Artery Bypass Graft</div>
+      <div class="vacancy-title">PhD em Sociological Demography · Projeto DEM-LOSS, desigualdades no luto familiar</div>
       <div class="vacancy-tags">
-        <span class="badge badge-green">Aderência: Alta</span>
-        <span class="badge badge-amber">Viabilidade: Condicionada</span>
-        <span class="badge badge-amber">Ação: Verificar</span>
+        <span class="badge badge-green">Financiado</span>
+        <span class="badge badge-amber">Exige base quantitativa</span>
+        <span class="badge badge-red">Prazo: 01/10/2026 · VERIFICAR</span>
       </div>
     </div>
     <div class="vacancy-meta">
-      <span class="meta-item">🏛 Monash University Malaysia</span>
-      <span class="meta-item">📅 31/01/2027</span>
-      <span class="meta-item">💰 Competitivo, aberto internacionalmente</span>
+      <span class="meta-item">🏛 Stockholm University, Suecia</span>
+      <span class="meta-item">📅 01/10/2026 (reconfirmar)</span>
+      <span class="meta-item">💰 Emprego doctoral, 4 anos</span>
+      <span class="meta-item">✉️ isaac.sasson@sociology.su.se</span>
     </div>
     <div class="vacancy-body">
       <div>
-        <p class="vb-label">Aderência ao perfil</p>
-        <p class="vb-green">Reabilitação cardíaca pós-cirurgia, adesão e desfechos de longo prazo. O Projeto Coração e o SIAC 2018 oferecem base direta. O prazo mais longo permite preparar uma candidatura mais elaborada.</p>
+        <p class="vb-label">Aderencia ao perfil</p>
+        <p class="vb-green">Alternativa secundaria: menor continuidade de PDT/ergonomia, mas o tema de desigualdades e luto familiar conecta saude, trabalho e organizacao social. Ingles, sem exigencia de sueco.</p>
       </div>
       <div>
         <p class="vb-label">O que observar</p>
-        <p class="vb-amber">Componente quantitativo e possível uso de IA. Verifique a localização (Malaysia) e se é viável. Nomeie o desenvolvimento metodológico como objetivo do doutorado.</p>
+        <p class="vb-amber">Exige formacao quantitativa e experiencia com registros populacionais ou surveys. Pedem plano preliminar de ate 1.000 palavras dentro do DEM-LOSS. Priorizar apenas com experiencia demonstravel em metodos quantitativos.</p>
       </div>
     </div>
     <div class="vacancy-footer">
-      <a class="btn-link" href="https://www.monash.edu.my/research/postgraduate/gems" target="_blank" rel="noopener">🔗 Ver oportunidade</a>
+      <a class="btn-link" href="https://www.su.se/english/research/postgraduate-studies" target="_blank" rel="noopener">🔗 Stockholm University</a>
     </div>
   </div>
 
+  <!-- Roskilde -->
   <div class="vacancy">
     <div class="vacancy-head">
-      <div class="vacancy-title">Multimorbidity Rehabilitation Models · Diabetes T2, COPD e Cardiovascular Disease</div>
+      <div class="vacancy-title">PhD no Projeto WELLCARE · Bem-estar no trabalho de cuidado de idosos</div>
       <div class="vacancy-tags">
-        <span class="badge badge-green">Aderência: Alta</span>
-        <span class="badge badge-red">Viabilidade: Condicionada</span>
-        <span class="badge badge-amber">Ação: Verificar</span>
+        <span class="badge badge-green">Financiado, 3 anos</span>
+        <span class="badge badge-amber">Barreira: dinamarques</span>
+        <span class="badge badge-red">Prazo: 06/10/2026 · VERIFICAR</span>
       </div>
     </div>
     <div class="vacancy-meta">
-      <span class="meta-item">🏛 University of Birmingham, RU</span>
-      <span class="meta-item">📅 Aberta ano-redondo</span>
-      <span class="meta-item">💰 Self-funded · buscar bolsa externa</span>
+      <span class="meta-item">🏛 Roskilde University, Dinamarca</span>
+      <span class="meta-item">📅 06/10/2026 (reconfirmar no portal)</span>
+      <span class="meta-item">💰 Contrato de 3 anos, inicio 01/12/2026</span>
+      <span class="meta-item">✉️ karench@ruc.dk</span>
     </div>
     <div class="vacancy-body">
       <div>
-        <p class="vb-label">Aderência ao perfil</p>
-        <p class="vb-green">Encaixe temático com fisioterapia, UTI adulto e reabilitação cardiovascular em populações com múltiplas condições. Vale mapear os supervisores e o grupo de pesquisa da Birmingham.</p>
+        <p class="vb-label">Aderencia ao perfil</p>
+        <p class="vb-green">Bem-estar no trabalho de cuidado, foco em mulheres na meia-idade. Conexao forte com sofrimento, genero e organizacao do trabalho. A dissertacao Fiocruz dialoga diretamente com o referencial do projeto.</p>
       </div>
       <div>
-        <p class="vb-label">O que observar</p>
-        <p class="vb-amber">Self-funded. Só avance como candidatura principal se houver fonte de financiamento identificada: CAPES/PrInt, CNPq ou Commonwealth. Útil como mapeamento de supervisores agora.</p>
+        <p class="vb-label">O que verificar</p>
+        <p class="vb-amber">Exige dinamarques e ingles excelentes. Experiencia etnografica e criterio. Pedem proposta de 3 paginas dentro do WELLCARE. Confirmar anuncio no portal institucional antes de qualquer esforco, pois o prazo e urgente.</p>
       </div>
     </div>
     <div class="vacancy-footer">
-      <a class="btn-link" href="https://www.birmingham.ac.uk/schools/sport-exercise/research/index.aspx" target="_blank" rel="noopener">🔗 Ver grupo de pesquisa</a>
+      <a class="btn-link" href="https://ruc.dk/en/research/phd-programme" target="_blank" rel="noopener">🔗 Roskilde University</a>
     </div>
   </div>
 
+  <!-- GRUPO 3: PROGRAMAS PARA PROJETO PROPRIO -->
+  <div class="group-header group-plum" style="margin-top:36px;margin-bottom:6px">Grupo 3 · Programas para desenvolver projeto proprio</div>
+  <p style="font-size:13px;color:var(--fg3);margin-bottom:20px">Voce chega com a pergunta de pesquisa. O financiamento depende de aceite da supervisora e de concurso de bolsas separado. Aceite academico nao garante financiamento.</p>
+
+  <!-- UCLouvain -->
   <div class="vacancy">
     <div class="vacancy-head">
-      <div class="vacancy-title">PhD em Rehabilitation Sciences · Supervisão com Profa. Mirella Veras</div>
+      <div class="vacancy-title">Doutorado em Clinica e Sociologia do Trabalho · CriDIS, UCLouvain</div>
       <div class="vacancy-tags">
-        <span class="badge badge-green">Aderência: Alta</span>
-        <span class="badge badge-amber">Viabilidade: Condicionada</span>
-        <span class="badge badge-amber">Ação: Contato direto</span>
+        <span class="badge badge-green">Aderencia: Alta</span>
+        <span class="badge badge-amber">Bolsa: FRESH/FNRS (concurso)</span>
+        <span class="badge badge-blue">Acao: Contato direto</span>
       </div>
     </div>
     <div class="vacancy-meta">
-      <span class="meta-item">🏛 University of Manitoba, Canadá</span>
-      <span class="meta-item">📅 Aberta para 2027</span>
+      <span class="meta-item">🏛 UCLouvain · Louvain-la-Neuve, Belgica</span>
+      <span class="meta-item">📅 Verificar ciclo FNRS 2027</span>
+      <span class="meta-item">💰 Bolsa FRESH ou FNRS (concurso separado)</span>
+      <span class="meta-item">✉️ thomas.perilleux@uclouvain.be</span>
+    </div>
+    <div class="vacancy-body">
+      <div>
+        <p class="vb-label">Aderencia ao perfil</p>
+        <p class="vb-green">Thomas Perilleux (UCLouvain/CriDIS) e um dos pesquisadores europeus mais alinhados ao referencial dejouriano da sua dissertacao. Pesquisar com ele seria continuar de onde a dissertacao parou. O CriDIS e o locus institucional dessa pesquisa na Belgica.</p>
+      </div>
+      <div>
+        <p class="vb-label">Como abordar</p>
+        <p class="vb-amber">Envie mensagem em frances ou ingles apresentando a dissertacao. Cite um artigo especifico de Perilleux e mostre como sua pesquisa dialoga. A primeira mensagem e apresentacao, nao solicitacao de supervisao imediata.</p>
+      </div>
+    </div>
+    <div class="vacancy-footer">
+      <a class="btn-link" href="https://www.uclouvain.be/cridis" target="_blank" rel="noopener">🔗 CriDIS UCLouvain</a>
+    </div>
+  </div>
+
+  <!-- ULiege ValoRH -->
+  <div class="vacancy">
+    <div class="vacancy-head">
+      <div class="vacancy-title">Doutorado em Prevencao do Burnout e Retorno ao Trabalho · ValoRH, ULiege</div>
+      <div class="vacancy-tags">
+        <span class="badge badge-green">Aderencia: Alta</span>
+        <span class="badge badge-blue">Acao: Contato direto</span>
+        <span class="badge badge-amber">Financiamento: verificar</span>
+      </div>
+    </div>
+    <div class="vacancy-meta">
+      <span class="meta-item">🏛 ULiege · Liege, Belgica</span>
+      <span class="meta-item">📅 Verificar chamadas</span>
+      <span class="meta-item">✉️ admission.phd@uliege.be (equivalencia) · ihansez@uliege.be (cientifico)</span>
+    </div>
+    <div class="vacancy-body">
+      <div>
+        <p class="vb-label">Aderencia ao perfil</p>
+        <p class="vb-green">Isabelle Hansez trabalha com prevencao do burnout, retorno ao trabalho e intervencoes organizacionais. E o grupo empirico que complementa o referencial teorico dejouriano da dissertacao. A ULiege aceita candidaturas em ingles, o que diminui a barreira de idioma.</p>
+      </div>
+      <div>
+        <p class="vb-label">Como abordar</p>
+        <p class="vb-amber">Primeiro contato institucional para equivalencia de diploma: admission.phd@uliege.be. Contato cientifico: Isabelle Hansez. Admissao fora da UE exige aceite escrito da orientacao e demonstracao de recursos financeiros.</p>
+      </div>
+    </div>
+    <div class="vacancy-footer">
+      <a class="btn-link" href="https://www.valorh.uliege.be/" target="_blank" rel="noopener">🔗 ValoRH ULiege</a>
+    </div>
+  </div>
+
+  <!-- Cnam -->
+  <div class="vacancy">
+    <div class="vacancy-head">
+      <div class="vacancy-title">Doctorat Ergonomie · CRTD, Cnam Paris</div>
+      <div class="vacancy-tags">
+        <span class="badge badge-green">Aderencia: Alta</span>
+        <span class="badge badge-amber">Ciclo 2027 (2026 encerrado)</span>
+        <span class="badge badge-blue">Acao: Contato academico agora</span>
+      </div>
+    </div>
+    <div class="vacancy-meta">
+      <span class="meta-item">🏛 Cnam · Paris, Franca</span>
+      <span class="meta-item">📅 Ciclo 2027, contato possivel agora</span>
+      <span class="meta-item">💰 Contrato doctoral por concurso (nao garantido pelo aceite)</span>
+      <span class="meta-item">✉️ flore.barcellini@lecnam.net</span>
+    </div>
+    <div class="vacancy-body">
+      <div>
+        <p class="vb-label">Aderencia ao perfil</p>
+        <p class="vb-green">O Cnam e onde a PDT tem sua maior expressao institucional na Europa. Dejours construiu grande parte de sua obra aqui. Entrar em contato com o CRTD e reconhecer o vinculo intelectual que ja existe entre a dissertacao e esse lugar.</p>
+      </div>
+      <div>
+        <p class="vb-label">O que fazer agora</p>
+        <p class="vb-amber">O ciclo 2026 esta encerrado. O contato com Flore Barcellini agora e para construir relacao e entender o ciclo 2027. Apresente a dissertacao e o referencial dejouriano. Pergunte sobre grupos parceiros europeus.</p>
+      </div>
+    </div>
+    <div class="vacancy-footer">
+      <a class="btn-link" href="https://ergonomie.cnam.fr/nos-formations/doctorat/" target="_blank" rel="noopener">🔗 Programa Ergonomie Cnam</a>
+      <a class="btn-link" href="https://crtd.cnam.fr" target="_blank" rel="noopener">🔗 CRTD Cnam</a>
+    </div>
+  </div>
+
+  <!-- Laval -->
+  <div class="vacancy">
+    <div class="vacancy-head">
+      <div class="vacancy-title">Doutorado em Ciencias do Trabalho e do Emprego</div>
+      <div class="vacancy-tags">
+        <span class="badge badge-green">Aderencia: Alta</span>
+        <span class="badge badge-amber">Idioma: Frances obrigatorio</span>
+        <span class="badge badge-blue">Acao: Estruturar frances e supervisora</span>
+      </div>
+    </div>
+    <div class="vacancy-meta">
+      <span class="meta-item">🏛 Universite Laval, Quebec, Canada</span>
+      <span class="meta-item">📅 Entrada outono, verificar chamadas</span>
+      <span class="meta-item">💰 Bolsas e pesquisa/ensino (nao garantido)</span>
+      <span class="meta-item">✉️ RLT.gde.2@rlt.ulaval.ca</span>
+    </div>
+    <div class="vacancy-body">
+      <div>
+        <p class="vb-label">Aderencia ao perfil</p>
+        <p class="vb-green">Programa interdisciplinar em relacoes de trabalho, saude ocupacional e ciencias sociais. Media de referencia 3,50/4,33. Orientacao nao precisa estar definida na admissao, mas deve ser obtida ate o fim do primeiro semestre.</p>
+      </div>
+      <div>
+        <p class="vb-label">O que observar</p>
+        <p class="vb-amber">Frances comprovado e obrigatorio para candidatas nao francófonas. Ate 6 creditos preparatorios podem ser exigidos. Confirmar supervisora e recursos antes de aceitar qualquer oferta.</p>
+      </div>
+    </div>
+    <div class="vacancy-footer">
+      <a class="btn-link" href="https://www.ulaval.ca/etudes/programmes/doctorat-en-sciences-du-travail-et-de-lemploi" target="_blank" rel="noopener">🔗 Programa Laval</a>
+    </div>
+  </div>
+
+  <!-- UQAM -->
+  <div class="vacancy">
+    <div class="vacancy-head">
+      <div class="vacancy-title">Doutorado Interdisciplinar em Saude e Sociedade</div>
+      <div class="vacancy-tags">
+        <span class="badge badge-green">Aderencia: Alta</span>
+        <span class="badge badge-green">Bolsa PBEEE: CAD 25k/ano</span>
+        <span class="badge badge-blue">Acao: Contato com supervisora</span>
+      </div>
+    </div>
+    <div class="vacancy-meta">
+      <span class="meta-item">🏛 UQAM, Montreal, Canada</span>
+      <span class="meta-item">📅 Verificar chamadas 2027</span>
+      <span class="meta-item">💰 Apoio universal parcial + PBEEE CAD 25k/ano para internacionais</span>
+      <span class="meta-item">✉️ doctorat.sante.societe@uqam.ca</span>
+    </div>
+    <div class="vacancy-body">
+      <div>
+        <p class="vb-label">Aderencia ao perfil</p>
+        <p class="vb-green">Programa interdisciplinar com abordagens criticas em saude, trabalho e sociedade. A bolsa PBEEE de CAD 25k/ano e especifica para internacionais e coloca o UQAM como uma das opcoes mais financeiramente viaveis. Pedem resumo de 3 paginas aprovado por futura supervisora.</p>
+      </div>
+      <div>
+        <p class="vb-label">O que observar</p>
+        <p class="vb-amber">Frances e a lingua principal. Media minima 3,2/4,3. A seleção interna PBEEE de 2026 encerrou em julho: preparar proximo ciclo. Confirmar taxas e regras de acumulacao de bolsas.</p>
+      </div>
+    </div>
+    <div class="vacancy-footer">
+      <a class="btn-link" href="https://etudier.uqam.ca/programme?code=2350" target="_blank" rel="noopener">🔗 Programa UQAM</a>
+    </div>
+  </div>
+
+  <!-- Porto -->
+  <div class="vacancy">
+    <div class="vacancy-head">
+      <div class="vacancy-title">Programa Doutoral em Seguranca e Saude Ocupacionais · DemSSO</div>
+      <div class="vacancy-tags">
+        <span class="badge badge-green">Aderencia: Alta</span>
+        <span class="badge badge-amber">Custos: confirmar bolsa</span>
+        <span class="badge badge-blue">Acao: Verificar edital e prazos</span>
+      </div>
+    </div>
+    <div class="vacancy-meta">
+      <span class="meta-item">🏛 Universidade do Porto, Portugal</span>
+      <span class="meta-item">📅 Terceira fase: 22/10 a 19/11/2026 (reconfirmar)</span>
+      <span class="meta-item">💰 Sem bolsa automatica · 3.000 euros/ano para CPLP</span>
+    </div>
+    <div class="vacancy-body">
+      <div>
+        <p class="vb-label">Aderencia ao perfil</p>
+        <p class="vb-green">Programa de 6 semestres em seguranca e saude ocupacional. Boa alternativa linguistica: portugues, com abertura a estudantes de lingua inglesa. A brasileira enquadra como CPLP, o que reduz as propinas em relacao ao valor internacional.</p>
+      </div>
+      <div>
+        <p class="vb-label">O que verificar</p>
+        <p class="vb-amber">Nao ha bolsa automatica: confirmar oportunidades de financiamento com a coordenacao antes de avancar. A rota dependeria de FCT, CAPES ou outro mecanismo de financiamento proprio. Confirmar datas no edital SIGARRA antes de qualquer esforco.</p>
+      </div>
+    </div>
+    <div class="vacancy-footer">
+      <a class="btn-link" href="https://sigarra.up.pt" target="_blank" rel="noopener">🔗 Portal SIGARRA UP</a>
+    </div>
+  </div>
+
+  <!-- Monash -->
+  <div class="vacancy">
+    <div class="vacancy-head">
+      <div class="vacancy-title">Digital Sleep Health Management in Shift Work</div>
+      <div class="vacancy-tags">
+        <span class="badge badge-green">Aderencia: Alta</span>
+        <span class="badge badge-amber">Prazo: 28/02/2027</span>
+        <span class="badge badge-blue">Acao: Contato agora, candidatura 2027</span>
+      </div>
+    </div>
+    <div class="vacancy-meta">
+      <span class="meta-item">🏛 Monash University, Australia</span>
+      <span class="meta-item">📅 MGS internacional fecha 28/02/2027</span>
+      <span class="meta-item">💰 MGS: AUD 41.100/ano + possivel AUD 5.000 do projeto</span>
+      <span class="meta-item">✉️ tracey.sletten@monash.edu</span>
+    </div>
+    <div class="vacancy-body">
+      <div>
+        <p class="vb-label">Aderencia ao perfil</p>
+        <p class="vb-green">Sono em trabalhadores de turno, saude ocupacional, intervencoes digitais. A pesquisa sobre burnout tem conexao direta com privacao de sono. Background clinico em UTI, onde turnos noturnos sao a realidade, e diferencial empirico real.</p>
+      </div>
+      <div>
+        <p class="vb-label">Como abordar</p>
+        <p class="vb-amber">Prazo 2027: candidatura de preparacao longa. Entre em contato com Tracey Sletten agora para apresentar o perfil. Confirmar tuition, seguro e composicao total do pacote antes de avancar. Visto australiano exige planejamento antecipado.</p>
+      </div>
+    </div>
+    <div class="vacancy-footer">
+      <a class="btn-link" href="https://supervisorconnect.med.monash.edu/projects/digital-sleep-health-management-shift-work" target="_blank" rel="noopener">🔗 Projeto Monash</a>
+    </div>
+  </div>
+
+  <!-- Manitoba -->
+  <div class="vacancy">
+    <div class="vacancy-head">
+      <div class="vacancy-title">PhD em Rehabilitation Sciences · Supervisao com Profa. Mirella Veras</div>
+      <div class="vacancy-tags">
+        <span class="badge badge-green">Aderencia: Alta</span>
+        <span class="badge badge-amber">Viabilidade: Condicionada</span>
+        <span class="badge badge-blue">Acao: Contato direto em portugues</span>
+      </div>
+    </div>
+    <div class="vacancy-meta">
+      <span class="meta-item">🏛 University of Manitoba, Canada</span>
+      <span class="meta-item">📅 Prospectar para 2027</span>
       <span class="meta-item">💰 Financiamento a definir com supervisora</span>
     </div>
     <div class="vacancy-body">
       <div>
-        <p class="vb-label">Aderência ao perfil</p>
-        <p class="vb-green">Profa. Mirella Veras é brasileira, fisioterapeuta, trabalha com saúde digital, reabilitação, telemonitoramento e IA. O contato em português facilita a construção de um projeto conjunto. A narrativa de evolução clínica para pesquisa funciona bem com a linha dela.</p>
+        <p class="vb-label">Aderencia ao perfil</p>
+        <p class="vb-green">Profa. Mirella Veras e brasileira, fisioterapeuta, trabalha com saude digital, reabilitacao e telemonitoramento. O contato em portugues facilita muito. O mestrado Fiocruz e diferencial claro para a linha dela.</p>
       </div>
       <div>
         <p class="vb-label">O que observar</p>
-        <p class="vb-amber">Primeiro passo é e-mail direto, não candidatura formal. O Canadá tem processo de visto diferente da Europa. Verifique o processo separado antes de avançar.</p>
+        <p class="vb-amber">Primeiro passo e e-mail direto, nao candidatura formal. Verificar processo de visto canadense com antecedencia. A resposta de Mirella pode virar carta de apoio para outras candidaturas.</p>
       </div>
     </div>
     <div class="vacancy-footer">
-      <a class="btn-link" href="https://umanitoba.ca/health-sciences/physical-therapy/graduate-programs/phd-program" target="_blank" rel="noopener">🔗 Ver programa</a>
+      <a class="btn-link" href="https://umanitoba.ca/health-sciences/physical-therapy/graduate-programs/phd-program" target="_blank" rel="noopener">🔗 Manitoba PT PhD</a>
     </div>
   </div>
 
-  <!-- GRUPO 3 -->
-  <div class="group-header group-blue" style="margin-top:32px">Grupo 3 · Monitorar</div>
-
+  <!-- Birmingham (prospecao) -->
   <div class="vacancy">
     <div class="vacancy-head">
-      <div class="vacancy-title">PhD Position: Fatigue in Motion · Radboud University</div>
+      <div class="vacancy-title">PhD Behind the Wheel · Autogestao da dor musculoesquelética em motoristas profissionais</div>
       <div class="vacancy-tags">
-        <span class="badge badge-green">Aderência: Alta</span>
-        <span class="badge badge-red">Viabilidade: Condicionada</span>
-        <span class="badge badge-amber">Ação: Monitorar</span>
+        <span class="badge badge-amber">Self-funded</span>
+        <span class="badge badge-blue">Acao: Prospecao de financiamento</span>
       </div>
     </div>
     <div class="vacancy-meta">
-      <span class="meta-item">🏛 Radboud University Medical Center, Holanda</span>
-      <span class="meta-item">📅 30/09/2026</span>
-      <span class="meta-item">💰 Emprego PhD: €3.204 a €4.051 brutos/mês</span>
+      <span class="meta-item">🏛 University of Birmingham, RU</span>
+      <span class="meta-item">📅 Aberta ao longo do ano</span>
+      <span class="meta-item">💰 Self-funded · avançar apenas com bolsa identificada</span>
+      <span class="meta-item">Orientacao: Glykeria Skamagki e Michael Mansfield</span>
     </div>
     <div class="vacancy-body">
       <div>
-        <p class="vb-label">Aderência ao perfil</p>
-        <p class="vb-green">Fadiga, mobilidade, wearables, análise de marcha, métodos mistos e reabilitação. Encaixe temático relevante com a formação em fisioterapia.</p>
+        <p class="vb-label">Aderencia ao perfil</p>
+        <p class="vb-green">Revisao sistematica, saude musculoesquelética e ocupacional, metodos mistos. A revisao integrativa da dissertacao e ponto de aproximacao direto. Fisioterapia como background reforca a credibilidade clinica.</p>
       </div>
       <div>
         <p class="vb-label">O que observar</p>
-        <p class="vb-amber">Exige holandês fluente. Mapeie o grupo de pesquisa para futuras chamadas em inglês no Radboud.</p>
+        <p class="vb-amber">Nao avance como candidatura principal sem fonte de bolsa identificada: CAPES/PrInt, CNPq ou Commonwealth. A acao agora e fazer contato e perguntar sobre projetos pagos futuros.</p>
       </div>
     </div>
     <div class="vacancy-footer">
-      <a class="btn-link" href="https://www.radboudumc.nl/en/working-at/phd-positions" target="_blank" rel="noopener">🔗 Ver vagas Radboud</a>
+      <a class="btn-link" href="https://www.findaphd.com" target="_blank" rel="noopener">🔗 FindAPhD Birmingham</a>
     </div>
   </div>
 
+  <!-- Loughborough -->
   <div class="vacancy">
     <div class="vacancy-head">
-      <div class="vacancy-title">Doctoral student · Ergonomics, Digital Technology and Work-Related Musculoskeletal Disorders</div>
+      <div class="vacancy-title">PhD em Human Factors · Loughborough University</div>
       <div class="vacancy-tags">
-        <span class="badge badge-green">Aderência: Alta</span>
-        <span class="badge badge-red">Viabilidade: Condicionada</span>
-        <span class="badge badge-amber">Ação: Monitorar</span>
+        <span class="badge badge-green">Aderencia: Alta</span>
+        <span class="badge badge-amber">Studentship: verificar</span>
+        <span class="badge badge-blue">Acao: Contato e mapeamento</span>
       </div>
     </div>
     <div class="vacancy-meta">
-      <span class="meta-item">🏛 KTH / Karolinska Institutet, Suécia</span>
-      <span class="meta-item">📅 08/10/2026</span>
-      <span class="meta-item">💰 Doutorado empregado, financiado</span>
+      <span class="meta-item">🏛 Loughborough University, RU</span>
+      <span class="meta-item">📅 Verificar studentships abertas</span>
+      <span class="meta-item">✉️ sdca-pgr@lboro.ac.uk</span>
     </div>
     <div class="vacancy-body">
       <div>
-        <p class="vb-label">Aderência ao perfil</p>
-        <p class="vb-green">Fisioterapia, saúde ocupacional, organização do trabalho e ergonomia. O mestrado Fiocruz sobre burnout conecta diretamente ao tema.</p>
+        <p class="vb-label">Aderencia ao perfil</p>
+        <p class="vb-green">Human Factors e Ergonomia, sistemas de saude, seguranca do paciente. Background de fisioterapia em UTI com mestrado em sofrimento no trabalho e combinacao rara nesse campo. Loughborough tem um dos melhores grupos de Human Factors do RU.</p>
       </div>
       <div>
-        <p class="vb-label">O que observar</p>
-        <p class="vb-amber">Sueco exigido e mensuração técnica ergonômica avançada. Mesma estratégia do Radboud: mapear o grupo agora, candidatar quando abrir chamada em inglês.</p>
+        <p class="vb-label">Como abordar</p>
+        <p class="vb-amber">Prospecao: buscar studentships elegiveis a internacionais e confirmar cobertura integral das taxas internacionais. Nao priorizar matricula sem pacote financeiro confirmado.</p>
       </div>
     </div>
     <div class="vacancy-footer">
-      <a class="btn-link" href="https://www.kth.se/en/om/work-at-kth/lediga-jobb" target="_blank" rel="noopener">🔗 Ver vagas KTH</a>
+      <a class="btn-link" href="https://www.lboro.ac.uk/study/postgraduate/research-degrees/research-areas/design-creative-arts/" target="_blank" rel="noopener">🔗 Human Factors Loughborough</a>
     </div>
   </div>
 
+  <!-- Curtin -->
   <div class="vacancy">
     <div class="vacancy-head">
-      <div class="vacancy-title">Doctoral Programme in Physiotherapy · University of Nicosia</div>
+      <div class="vacancy-title">Future of Work Institute · Supervisao com Sharon Parker</div>
       <div class="vacancy-tags">
-        <span class="badge badge-green">Aderência: Alta</span>
-        <span class="badge badge-amber">Viabilidade: Condicionada</span>
-        <span class="badge badge-amber">Ação: Verificar</span>
+        <span class="badge badge-green">Aderencia: Alta</span>
+        <span class="badge badge-amber">Proxima rodada: Julho 2027</span>
+        <span class="badge badge-blue">Acao: Preparacao longa</span>
       </div>
     </div>
     <div class="vacancy-meta">
-      <span class="meta-item">🏛 University of Nicosia, Chipre (UE)</span>
-      <span class="meta-item">📅 31/12/2026</span>
-      <span class="meta-item">💰 Financiamento não confirmado</span>
+      <span class="meta-item">🏛 Curtin University / Future of Work Institute, Australia</span>
+      <span class="meta-item">📅 Chamada central: Julho 2027</span>
+      <span class="meta-item">💰 RTP: AUD 38.440/ano (confirmar cobertura taxas internacionais)</span>
+      <span class="meta-item">✉️ fowi@curtin.edu.au</span>
     </div>
     <div class="vacancy-body">
       <div>
-        <p class="vb-label">Aderência ao perfil</p>
-        <p class="vb-green">Encaixe disciplinar em fisioterapia, reabilitação, cardiovascular, fadiga e telerreabilitação. Chipre está dentro da UE.</p>
+        <p class="vb-label">Aderencia ao perfil</p>
+        <p class="vb-green">Sharon Parker e uma das pesquisadoras mais citadas em Design do Trabalho e Motivacao. Para o eixo 2, e o grupo com maior impacto internacional na intersecao que voce ocupa.</p>
       </div>
       <div>
-        <p class="vb-label">O que observar</p>
-        <p class="vb-amber">Confirme formalmente se há scholarship ou tuition waiver antes de investir tempo na candidatura.</p>
+        <p class="vb-label">Como abordar</p>
+        <p class="vb-amber">Prazo julio 2027: use o tempo para estruturar candidatura e, se possivel, publicar artigo em ingles derivado da dissertacao. Um pre-print ou submissao ate la muda o nivel da candidatura.</p>
       </div>
     </div>
     <div class="vacancy-footer">
-      <a class="btn-link" href="https://www.unic.ac.cy/schools/school-of-health-sciences/department-of-physiotherapy/" target="_blank" rel="noopener">🔗 Ver programa</a>
+      <a class="btn-link" href="https://www.futureofworkinstitute.com.au/study" target="_blank" rel="noopener">🔗 Future of Work Institute</a>
     </div>
+  </div>
+
+</section>
+
+<!-- CAPES -->
+<section class="section" id="capes">
+  <p class="section-label">Financiamento publico brasileiro</p>
+  <h2>CAPES e agencias: o que verificar agora</h2>
+
+  <div class="callout callout-amber mb">
+    <span class="callout-icon">⚠️</span>
+    <div>
+      <strong>CAPES Doutorado Pleno nao esta com edital aberto para 2026</strong>
+      <p>A CAPES esta concentrando o ciclo atual no PDSE (Doutorado Sanduiche). O Doutorado Pleno no Exterior e uma rota real para o futuro, mas sem edital aberto agora. O que precisa ser verificado ativamente sao os editais de parceiros bilaterais, especialmente o DAAD (Alemanha) e a Fundacao Alexander von Humboldt. Esses podem ter janelas abertas ou em breve.</p>
+    </div>
+  </div>
+
+  <div class="capes-phase">
+    <div class="capes-phase-label">Verificar agora</div>
+    <h4>DAAD (Alemanha) e Fundacao Alexander von Humboldt</h4>
+    <p>O DAAD (Servico Alemao de Intercambio Academico) e a Fundacao Humboldt oferecem bolsas para doutorado na Alemanha abertas a brasileiras. O DAAD tem editais com prazos ao longo do ano; a Humboldt seleciona perfis de alto desempenho academico. Ambos precisam ser consultados diretamente agora para verificar janelas abertas.</p>
+    <div style="margin-top:12px;display:flex;gap:10px;flex-wrap:wrap">
+      <a class="btn-link" href="https://www.daad.org.br/pt/encontre-financiamentos/bolsas-do-daad-para-brasileiros/" target="_blank" rel="noopener">🔗 DAAD para brasileiros</a>
+      <a class="btn-link" href="https://www.humboldt-foundation.de/en/apply/sponsorship-programmes" target="_blank" rel="noopener">🔗 Fundacao Humboldt</a>
+    </div>
+  </div>
+
+  <div class="capes-phase">
+    <div class="capes-phase-label">Para o ciclo 2027</div>
+    <h4>CAPES Doutorado Pleno: como vai funcionar quando abrir</h4>
+    <p>Quando a CAPES abrir o Doutorado Pleno novamente, o processo tem tres fases. Primeiro, antes de qualquer candidatura, voce precisa ter uma carta de interesse ou aceite de uma supervisora no exterior e um plano de pesquisa estruturado. Segundo, a candidatura exige plano de pesquisa em portugues e no idioma do pais, Lattes atualizado, historicos, comprovante de proficiencia no idioma e carta de aceite. Terceiro, apos selecao, ha um periodo de providencias de visto (ate 6 meses) e inicio das atividades com relatorios periodicos. A CAPES nao financia a busca de vaga: financia quem ja tem supervisora e aceite. Por isso, construir rede agora e o que viabiliza a CAPES depois.</p>
+    <a class="btn-link" href="https://www.gov.br/capes/pt-br/acesso-a-informacao/acoes-e-programas/bolsas/bolsas-e-auxilios-internacionais/encontre-aqui/paises/multinacional/doutorado-pleno" target="_blank" rel="noopener" style="margin-top:10px;display:inline-block">🔗 Pagina oficial CAPES Doutorado Pleno</a>
+  </div>
+
+  <div class="callout callout-plum mt">
+    <span class="callout-icon">🔀</span>
+    <div>
+      <strong>CAPES PDSE: o que esta aberto agora</strong>
+      <p>O Programa de Doutorado Sanduiche no Exterior (PDSE) financia 4 a 9 meses de pesquisa em universidade estrangeira para quem ja esta matriculada num doutorado no Brasil. Se voce ingressar num doutorado na Fiocruz, UFRJ ou USP, pode candidatar ao PDSE para um periodo no exterior com bolsa CAPES. E uma rota diferente do Pleno, mas complementar: voce tem vinculo brasileiro e financiamento para o periodo fora.</p>
+      <div style="margin-top:10px">
+        <a class="btn-link" href="https://www.gov.br/capes/pt-br/acesso-a-informacao/acoes-e-programas/bolsas/bolsas-e-auxilios-internacionais/encontre-aqui/paises/multinacional/programa-de-doutorado-sanduiche-no-exterior-pdse" target="_blank" rel="noopener">🔗 CAPES PDSE</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- REDE ACADEMICA -->
+<section class="section" id="rede">
+  <p class="section-label">Construcao de vinculos</p>
+  <h2>Rede Academica Prioritaria</h2>
+
+  <div class="callout callout-blue mb">
+    <span class="callout-icon">🌐</span>
+    <div>
+      <strong>Por que construir rede antes de candidatar</strong>
+      <p>Para os eixos 2 e 3, as candidaturas mais fortes chegam com um vinculo pre-existente com o grupo de pesquisa. Conhecer quem sao as pesquisadoras, por que esse grupo importa para o seu projeto e como entrar em contato sem parecer generica, isso e o que transforma uma candidatura em uma conversa ja iniciada.</p>
+    </div>
+  </div>
+
+  <div class="tab-bar" role="tablist">
+    <button class="tab-btn active" role="tab" aria-selected="true" onclick="showTab('prioridade')" id="tab-prioridade">Grupos prioritarios</button>
+    <button class="tab-btn" role="tab" aria-selected="false" onclick="showTab('referencia')" id="tab-referencia">Rede de referencia teorica</button>
+    <button class="tab-btn" role="tab" aria-selected="false" onclick="showTab('sequencia')" id="tab-sequencia">Sequencia de contato</button>
+  </div>
+
+  <!-- Painel 1 -->
+  <div class="tab-panel active" id="panel-prioridade">
+
+    <div class="rede-card">
+      <div class="rede-head">
+        <div class="rede-icon rede-icon-plum">🔬</div>
+        <div>
+          <div class="rede-title">UCLouvain / CriDIS · Thomas Perilleux</div>
+          <div class="rede-subtitle">Louvain-la-Neuve, Belgica</div>
+        </div>
+      </div>
+      <div class="rede-body">
+        <p class="rede-why">POR QUE ESTE GRUPO</p>
+        <p>Thomas Perilleux (UCLouvain) publica sobre sofrimento no trabalho, subjetivacao e clinica do trabalho dentro da tradicao dejouriana. E um dos pesquisadores europeus mais alinhados ao referencial teorico da sua dissertacao. Pesquisar com ele seria continuar de onde sua dissertacao parou.</p>
+        <p>O CriDIS (Centro de Pesquisa Interdisciplinar Trabalho, Estado e Sociedade) e o locus institucional onde essa pesquisa acontece na UCLouvain. As bolsas FRESH e FNRS financiam doutorados na Belgica e o processo e compativel com candidatas estrangeiras.</p>
+      </div>
+      <div class="rede-contact">
+        <div class="contact-block">
+          <div class="rede-contact-label">Contato direto</div>
+          <div class="rede-contact-name">Thomas Perilleux</div>
+          <div class="rede-contact-desc">thomas.perilleux@uclouvain.be</div>
+        </div>
+        <div class="contact-block">
+          <div class="rede-contact-label">Como abordar</div>
+          <div class="rede-contact-name">Em frances ou ingles</div>
+          <div class="rede-contact-desc">Cite um artigo especifico dele. Mostre como sua dissertacao dialoga com o campo da clinica do trabalho.</div>
+        </div>
+      </div>
+      <div class="rede-footer">
+        <a class="btn-link" href="https://www.uclouvain.be/cridis" target="_blank" rel="noopener">🔗 CriDIS UCLouvain</a>
+      </div>
+    </div>
+
+    <div class="rede-card">
+      <div class="rede-head">
+        <div class="rede-icon rede-icon-amber">🇧🇪</div>
+        <div>
+          <div class="rede-title">ULiege / ValoRH · Isabelle Hansez</div>
+          <div class="rede-subtitle">Liege, Belgica</div>
+        </div>
+      </div>
+      <div class="rede-body">
+        <p class="rede-why">POR QUE ESTE GRUPO</p>
+        <p>Isabelle Hansez (ValoRH/ULiege) trabalha com prevencao do burnout, retorno ao trabalho apos afastamento e intervencoes organizacionais em saude. E o grupo empirico que complementa o referencial teorico dejouriano que voce ja tem: onde Perilleux faz clinica do trabalho, Hansez faz intervencao e mensuracao.</p>
+        <p>A Belgica tem dois grupos fortes em sofrimento e trabalho, e voce pode citar ambos numa mesma candidatura europeia: sinaliza dominio do campo e relacionamentos em construcao com grupos de referencia.</p>
+      </div>
+      <div class="rede-contact">
+        <div class="contact-block">
+          <div class="rede-contact-label">Contato direto</div>
+          <div class="rede-contact-name">Isabelle Hansez</div>
+          <div class="rede-contact-desc">admission.phd@uliege.be</div>
+        </div>
+        <div class="contact-block">
+          <div class="rede-contact-label">Como abordar</div>
+          <div class="rede-contact-name">Em frances ou ingles</div>
+          <div class="rede-contact-desc">Apresente o mestrado Fiocruz, o tema burnout e o interesse em pesquisa sobre prevencao e retorno ao trabalho.</div>
+        </div>
+      </div>
+      <div class="rede-footer">
+        <a class="btn-link" href="https://www.uliege.be" target="_blank" rel="noopener">🔗 ULiege</a>
+      </div>
+    </div>
+
+    <div class="rede-card">
+      <div class="rede-head">
+        <div class="rede-icon rede-icon-teal">🏥</div>
+        <div>
+          <div class="rede-title">Cnam / CRTD Paris · Flore Barcellini</div>
+          <div class="rede-subtitle">Paris, Franca</div>
+        </div>
+      </div>
+      <div class="rede-body">
+        <p class="rede-why">POR QUE ESTE GRUPO</p>
+        <p>O Cnam e onde a Psicodinamica do Trabalho tem sua maior expressao institucional na Europa. Christophe Dejours, o criador do referencial teorico central da sua dissertacao, construiu grande parte de sua obra dentro desta instituicao. Entrar em contato com o grupo nao e so estrategia de candidatura: e reconhecer o vinculo intelectual que ja existe entre sua pesquisa e esse lugar.</p>
+        <p>Para candidaturas no eixo 2 em universidades francesas ou francofonas, ter trocado e-mails com pesquisadoras do Cnam reforca a legitimidade do seu enquadramento teorico. Mostra que voce conhece o campo por dentro, nao apenas leu os livros.</p>
+      </div>
+      <div class="rede-contact">
+        <div class="contact-block">
+          <div class="rede-contact-label">Contato direto</div>
+          <div class="rede-contact-name">Flore Barcellini</div>
+          <div class="rede-contact-desc">flore.barcellini@lecnam.net</div>
+        </div>
+        <div class="contact-block">
+          <div class="rede-contact-label">Como abordar</div>
+          <div class="rede-contact-name">Em frances</div>
+          <div class="rede-contact-desc">Apresente a dissertacao e o referencial dejouriano. Pergunte sobre grupos parceiros europeus abertos a colaboracoes com pesquisadoras brasileiras.</div>
+        </div>
+      </div>
+      <div class="rede-footer">
+        <a class="btn-link" href="https://crtd.cnam.fr" target="_blank" rel="noopener">🔗 CRTD Cnam</a>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- Painel 2 -->
+  <div class="tab-panel" id="panel-referencia">
+
+    <div class="callout callout-plum mb">
+      <span class="callout-icon">📚</span>
+      <div>
+        <strong>O que e a rede de referencia teorica</strong>
+        <p>Sao as pesquisadoras cujo trabalho fundamenta o seu, e que por isso sao as pessoas com quem faz mais sentido abrir uma conversa academica. Citar o trabalho delas numa candidatura sem nunca ter trocado uma mensagem e diferente de citar com uma troca real de e-mail. Essa distincao aparece na carta de motivacao e na entrevista.</p>
+      </div>
+    </div>
+
+    <div class="ref-card">
+      <h4>Christophe Dejours · Cnam, Paris</h4>
+      <p>Fundador da Psicodinamica do Trabalho, o referencial central da sua dissertacao. Seu trabalho sobre sofrimento, trabalho e reconhecimento e o ponto de partida teorico de toda a sua linha de pesquisa. Entrar em contato com pesquisadoras que publicam dentro desta tradicao (nao necessariamente com Dejours diretamente) e um passo concreto.</p>
+    </div>
+
+    <div class="ref-card">
+      <h4>Pascale Molinier · Paris 13 / Sorbonne Paris Nord</h4>
+      <p>Psicologa do trabalho e feminista. Publica sobre trabalho de cuidado, genero, sofrimento e etica do care. E a ponte entre o referencial dejouriano e as questoes de genero no trabalho, especialmente relevante se voce quiser posicionar sua pesquisa na intersecao entre saude ocupacional e trabalho feminizado.</p>
+    </div>
+
+    <div class="ref-card">
+      <h4>Thomas Perilleux · UCLouvain/CriDIS, Belgica</h4>
+      <p>Sociologo do trabalho com publicacoes sobre sofrimento, sentido e organizacao. Trabalha na UCLouvain e tem producao diretamente alinhada ao que voce investigou na dissertacao: sofrimento, subjetivacao e trabalho como categoria analitica. E o vinculo mais direto entre sua dissertacao e uma instituicao europeia com programa de doutorado ativo.</p>
+    </div>
+
+    <div class="ref-card">
+      <h4>Isabelle Hansez · ULiege/ValoRH, Belgica</h4>
+      <p>Psicologa do trabalho com foco em prevencao do burnout, retorno ao trabalho e intervencoes organizacionais. E o grupo empirico que complementa a abordagem teorica da sua dissertacao. Publicacoes em frances e ingles, o que facilita a leitura e o contato.</p>
+    </div>
+
+    <div class="ref-card">
+      <h4>Mirella Veras · University of Manitoba, Canada</h4>
+      <p>Fisioterapeuta brasileira com pesquisa em saude digital, reabilitacao e telemonitoramento. Fala portugues, o que facilita o primeiro contato. Para o eixo 2, uma supervisora brasileira em reabilitacao no Canada pode ser a entrada mais acessivel para candidatura internacional com apoio real.</p>
+    </div>
+
+  </div>
+
+  <!-- Painel 3 -->
+  <div class="tab-panel" id="panel-sequencia">
+
+    <div class="callout callout-green mb">
+      <span class="callout-icon">📋</span>
+      <div>
+        <strong>Principio da sequencia</strong>
+        <p>O contato com rede academica nao e disparo em massa: e construcao progressiva. Comece pelos vinculos mais proximos (referencial teorico que voce ja usa) e avance para os mais distantes conforme a conversa se consolida.</p>
+      </div>
+    </div>
+
+    <div class="timeline">
+      <div class="tl-item">
+        <p class="tl-phase">Semana 1 (agora)</p>
+        <p class="tl-title">E-mail para KTH/KI, confirmar viabilidade da candidatura sueca</p>
+        <p class="tl-body">Antes de qualquer candidatura formal, envie uma mensagem curta a Liyun Yang (KI) para perguntar se aceitam candidatas internacionais e se o sueco e realmente exigido na etapa de candidatura. Use o rascunho disponivel na aba de vagas. Isso leva 15 minutos e pode evitar horas de trabalho desnecessario, ou abrir uma porta que parecia fechada.</p>
+      </div>
+      <div class="tl-item">
+        <p class="tl-phase">Semana 1 a 2</p>
+        <p class="tl-title">E-mail para Mirella Veras (Manitoba)</p>
+        <p class="tl-body">E-mail direto em portugues. Apresente sua trajetoria, o mestrado Fiocruz e o interesse em pesquisa internacional em reabilitacao. Nao e candidatura formal: e uma conversa. Pergunte sobre possibilidade de supervisao para 2027. A resposta dela pode virar uma carta de apoio para outras candidaturas.</p>
+      </div>
+      <div class="tl-item">
+        <p class="tl-phase">Semana 2 a 3</p>
+        <p class="tl-title">Contato com Thomas Perilleux (UCLouvain)</p>
+        <p class="tl-body">Envie um e-mail curto em ingles ou frances apresentando a dissertacao e o interesse pelo grupo. Cite um artigo especifico dele. Nao peca supervisao imediatamente. A primeira mensagem e apresentacao, nao solicitacao.</p>
+      </div>
+      <div class="tl-item">
+        <p class="tl-phase">Out a Nov 2026</p>
+        <p class="tl-title">Contato com Cnam (rede dejouriana) e Isabelle Hansez (ULiege)</p>
+        <p class="tl-body">Apos as candidaturas de outubro, inicie contato com Flore Barcellini (CRTD/Cnam) e com Isabelle Hansez (ValoRH/ULiege). O primeiro e-mail e apresentacao do mestrado e do referencial teorico. O objetivo e aparecer como pesquisadora que conhece o campo por dentro antes de candidatar para 2027.</p>
+      </div>
+      <div class="tl-item">
+        <p class="tl-phase">Nov 2026 em diante</p>
+        <p class="tl-title">Tracey Sletten (Monash) e Sharon Parker (Curtin)</p>
+        <p class="tl-body">Apresentacao por e-mail para as duas pesquisadoras australianas. Sletten: sono e turno. Parker: design do trabalho. Ambas sao prazos 2027, entao ha tempo para construir a conversa. Um pre-print da dissertacao em ingles ate la seria o melhor cartao de visitas possivel.</p>
+      </div>
+    </div>
+
   </div>
 </section>
 
 <!-- GAPS -->
 <section class="section" id="gaps">
-  <p class="section-label">Análise honesta</p>
+  <p class="section-label">Analise honesta</p>
   <h2>Os gaps reais e o que fazer com cada um</h2>
 
   <div class="gap-row">
     <div>
       <p class="gap-label">Gap</p>
-      <strong>Estatística aplicada</strong>
-      <div class="mt-sm"><span class="badge badge-red">Alta relevância</span></div>
+      <strong>Estatistica aplicada</strong>
+      <div class="mt-sm"><span class="badge badge-red">Alta relevancia</span></div>
     </div>
     <div>
       <p class="gap-label">Como aparece nas vagas</p>
-      <p>Várias vagas mencionam R, SPSS ou Stata. A POLARIS é explícita. Qualquer vaga com métodos mistos pressupõe capacidade analítica básica.</p>
+      <p>Varias vagas mencionam R, SPSS ou Stata. A POLARIS e explicita. Qualquer vaga com metodos mistos pressupoe capacidade analitica basica.</p>
     </div>
     <div>
       <p class="gap-label">O que fazer agora</p>
-      <p>Comece um curso no Coursera (R for Data Science, gratuito para auditar). Mencione na candidatura como objetivo explícito de formação no doutorado, citando o curso como "em andamento".</p>
+      <p>Comece um curso no Coursera (R for Data Science, gratuito para auditar). Mencione na candidatura como objetivo explicito de formacao no doutorado, citando o curso como "em andamento".</p>
     </div>
   </div>
 
   <div class="gap-row">
     <div>
       <p class="gap-label">Gap</p>
-      <strong>Comprovação de inglês</strong>
-      <div class="mt-sm"><span class="badge badge-red">Alta relevância</span></div>
+      <strong>Comprovacao de ingles</strong>
+      <div class="mt-sm"><span class="badge badge-red">Alta relevancia</span></div>
     </div>
     <div>
       <p class="gap-label">Como aparece nas vagas</p>
-      <p>Muitas universidades britânicas e europeias exigem comprovação formal de proficiência, frequentemente IELTS, TOEFL ou equivalente. Os critérios variam por instituição e, em alguns processos, a comprovação pode ser apresentada após a candidatura.</p>
+      <p>Universidades britanicas e europeias exigem comprovacao formal de proficiencia: IELTS, TOEFL ou equivalente. Sem isso, candidaturas nao passam da triagem documental.</p>
     </div>
     <div>
       <p class="gap-label">O que fazer agora</p>
-      <p>Para cada vaga priorizada, verifique a exigência específica antes de agendar o exame. Programe o teste com antecedência suficiente para ter o resultado disponível antes do prazo de submissão.</p>
+      <p>Para cada vaga priorizada, verifique a exigencia especifica antes de agendar o exame. Programe com antecedencia suficiente: resultados levam ate 2 semanas para ficar disponiveis.</p>
     </div>
   </div>
 
   <div class="gap-row">
     <div>
       <p class="gap-label">Gap</p>
-      <strong>Publicação em inglês</strong>
-      <div class="mt-sm"><span class="badge badge-amber">Média relevância</span></div>
+      <strong>Publicacao em ingles</strong>
+      <div class="mt-sm"><span class="badge badge-amber">Media relevancia</span></div>
     </div>
     <div>
       <p class="gap-label">Como aparece nas vagas</p>
-      <p>Não é requisito formal na maioria das vagas deste ciclo, mas fortalece o contato com supervisores e a candidatura como um todo.</p>
+      <p>Nao e requisito formal na maioria das vagas deste ciclo, mas fortalece o contato com supervisoras e a candidatura como um todo. Para prazos 2027 (Monash, Curtin), uma publicacao ate la muda o nivel da candidatura.</p>
     </div>
     <div>
       <p class="gap-label">O que fazer agora</p>
-      <p>A revisão integrativa da dissertação pode virar artigo em inglês. Periódicos como <em>Occupational Medicine</em> ou <em>Work</em> são boas portas de entrada para esse tema.</p>
+      <p>A revisao integrativa da dissertacao pode virar artigo em ingles. Periodicos como <em>Occupational Medicine</em> ou <em>Work</em> sao boas portas de entrada para o tema.</p>
     </div>
   </div>
 
   <div class="gap-row">
     <div>
       <p class="gap-label">Gap</p>
-      <strong>Experiência internacional</strong>
-      <div class="mt-sm"><span class="badge badge-amber">Média relevância</span></div>
+      <strong>Experiencia internacional</strong>
+      <div class="mt-sm"><span class="badge badge-amber">Media relevancia</span></div>
     </div>
     <div>
       <p class="gap-label">Como aparece nas vagas</p>
-      <p>Intercâmbios, colaborações ou congressos fora do Brasil reforçam a candidatura, especialmente em redes MSCA.</p>
+      <p>Intercambios, colaboracoes ou congressos fora do Brasil reforcam a candidatura, especialmente em redes MSCA onde mobilidade e criterio explicito.</p>
     </div>
     <div>
       <p class="gap-label">O que fazer agora</p>
-      <p>Apresente a Fiocruz como instituição com projeção internacional (OMS, PAHO) nas cartas de motivação. Avalie participar de um congresso online em reabilitação europeu antes das candidaturas.</p>
+      <p>Apresente a Fiocruz como instituicao com projecao internacional (OMS, PAHO) nas cartas. A Rede Academica desta pagina e o inicio da construcao dessa experiencia: cada e-mail enviado conta.</p>
     </div>
   </div>
 </section>
 
 <!-- POSICIONAMENTO -->
 <section class="section" id="posicionamento">
-  <p class="section-label">Estratégia de candidatura</p>
-  <h2>Três eixos narrativos · adapte conforme a vaga</h2>
+  <p class="section-label">Estrategia de candidatura</p>
+  <h2>Dois eixos narrativos, adapte conforme a vaga</h2>
 
   <div class="callout callout-blue mb">
     <span class="callout-icon">🗺️</span>
     <div>
-      <strong>A lógica por trás dos três eixos</strong>
-      <p>Os três eixos abaixo são três formas de contar a mesma trajetória, priorizando entradas diferentes conforme o que cada vaga valoriza. Você não muda quem você é: muda o ponto de partida da narrativa.</p>
+      <strong>A logica dos dois eixos</strong>
+      <p>Os eixos abaixo sao duas formas de contar a mesma trajetoria, priorizando entradas diferentes conforme o que cada vaga valoriza. Voce nao muda quem voce e: muda o ponto de partida da narrativa.</p>
     </div>
   </div>
 
   <div class="pos-block">
-    <h4>Eixo 1 · Reabilitação cardíaca e clínica</h4>
-    <p>Vagas: Manchester JITAIs, Bath muscle disuse, Monash cardiac rehab, Cardiff VR.<br><br>
-    Abre com o Projeto Coração no HUCFF (reabilitação cardiovascular ambulatorial, VO2pico, testes de esforço, SIAC 2018), depois a especialização em UTI Adulto como prova de atuação em alta complexidade. O mestrado entra como elo entre experiência clínica e comportamento em saúde: você não é só fisioterapeuta que mede dados, você entende o sofrimento do paciente que não adere à reabilitação.</p>
+    <h4>Eixo 2 · Trabalho, Saude e Reabilitacao</h4>
+    <p>Vagas: KTH/KI ergonomia (se idioma resolver), TU Delft handover em UTI, Birmingham multimorbidity, UCLouvain/Perilleux, ULiege/Hansez, UQAM, Laval, Manitoba/Mirella Veras, Loughborough Human Factors, Monash sono em turno, Curtin/Sharon Parker.<br><br>
+    Abre com o mestrado sobre burnout e Psicodinamica do Trabalho de Dejours. A fisioterapia entra como ponto de diferenciacao frente a candidatas puramente da psicologia ou da administracao: voce traz o corpo, a clinica e a mensuracao objetiva de condicoes relacionadas ao trabalho. A Fiocruz como referencia em saude coletiva reforca esse eixo. O contato com a rede dejouriana europeia (Cnam, UCLouvain, ULiege) e o que transforma esse eixo em candidatura robusta.</p>
   </div>
 
-  <div class="pos-block">
-    <h4>Eixo 2 · Trabalho, saúde e reabilitação</h4>
-    <p>Vagas: Nottingham/Loughborough organisational health, KI/KTH ergonomia (se idioma resolver), Birmingham multimorbidity.<br><br>
-    Abre com o mestrado sobre burnout e Psicodinâmica do Trabalho de Dejours. A fisioterapia entra como ponto de diferenciação frente a candidatos puramente da psicologia ou da administração: você traz o corpo, a clínica e a mensuração objetiva de condições relacionadas ao trabalho. Fiocruz como referência em saúde coletiva reforça esse eixo.</p>
-  </div>
-
-  <div class="pos-block">
-    <h4>Eixo 3 · Reabilitação neonatal, pediátrica e funcional</h4>
-    <p>Vagas: Bristol birth asphyxia, projetos em neuroreabilitação pediátrica, vagas com AIMS e avaliação motora.<br><br>
-    Abre pela IC em meningomielocele no IPPMG (uso da AIMS, avaliação motora padronizada em lactente, SIAC 2019, avaliação Excelente). A especialização dupla em UTI Adulto e UTI Neonatal/Pediátrica reforça o percurso. Para supervisores nesse eixo, a AIMS é o detalhe que diferencia: é um instrumento com literatura internacional consolidada, aplicado por você em contexto clínico real.</p>
+  <div class="pos-block plum">
+    <h4>Eixo 3 · Reabilitacao Neonatal, Pediatrica e Funcional</h4>
+    <p>Vagas: Bristol birth asphyxia, POLARIS (condicoes cronicas raras), projetos com AIMS e avaliacao motora.<br><br>
+    Abre pela IC em meningomielocele no IPPMG (uso da AIMS, avaliacao motora padronizada em lactente, SIAC 2019, avaliacao Excelente). A especializacao dupla em UTI Adulto e UTI Neonatal/Pediatrica reforca o percurso. Para supervisoras nesse eixo, a AIMS e o detalhe que diferencia: e um instrumento com literatura internacional consolidada, aplicado por voce em contexto clinico real.</p>
   </div>
 
   <div class="pos-block">
     <h4>Para vagas MSCA e redes europeias</h4>
-    <p>Destaque a origem brasileira e a Fiocruz como diversidade geográfica e institucional: isso é critério explicitamente valorizado em redes Marie Curie. Verifique a regra de mobilidade MSCA (não ter residido no país do projeto nos últimos 3 anos antes de submeter). O contato com Manitoba (Mirella Veras) pode gerar carta de supervisora para outras candidaturas.</p>
+    <p>Destaque a origem brasileira e a Fiocruz como diversidade geografica e institucional: isso e criterio explicitamente valorizado em redes Marie Curie. Verifique a regra de mobilidade MSCA (nao ter residido no pais do projeto nos ultimos 3 anos antes de submeter). O contato com Manitoba (Mirella Veras) pode gerar carta de supervisora para outras candidaturas.</p>
   </div>
 
   <div class="callout callout-blue mt">
     <span class="callout-icon">✍️</span>
     <div>
-      <strong>Frase-base para todas as candidaturas</strong>
-      <p>"Physiotherapist with dual clinical expertise in cardiovascular rehabilitation and neonatal/paediatric intensive care, holding a Master's degree from Fiocruz on burnout and psychic suffering in the workplace. Research trajectory connecting clinical rehabilitation, occupational health and health behaviour."</p>
+      <strong>Frase-base para candidaturas no Eixo 2</strong>
+      <p>"Physiotherapist and researcher holding a Master's degree from Fiocruz on burnout and psychic suffering in the workplace, grounded in Dejours' psychodynamics of work. Clinical background in cardiovascular and neonatal intensive care. Research trajectory connecting occupational health, rehabilitation and health behaviour."</p>
+    </div>
+  </div>
+
+  <div class="callout callout-plum mt">
+    <span class="callout-icon">✍️</span>
+    <div>
+      <strong>Frase-base para candidaturas no Eixo 3</strong>
+      <p>"Physiotherapist with specialisation in neonatal and paediatric intensive care, holding a research fellowship in infant motor assessment using the Alberta Infant Motor Scale (AIMS) at IPPMG/UFRJ. Master's degree from Fiocruz connecting clinical rehabilitation, occupational health and psychic suffering."</p>
     </div>
   </div>
 </section>
 
-<!-- PLANO DE AÇÃO -->
+<!-- PLANO DE ACAO -->
 <section class="section" id="plano">
   <p class="section-label">O que fazer agora</p>
-  <h2>Plano de ação · semana a semana</h2>
+  <h2>Proximos passos</h2>
 
   <div class="timeline">
     <div class="tl-item">
-      <p class="tl-phase">Esta semana</p>
-      <p class="tl-title">Verificar requisitos de inglês e contato com supervisores</p>
-      <p class="tl-body">Consulte os requisitos específicos de cada vaga priorizada antes de agendar qualquer exame de proficiência. Para as vagas Cardiff, Bristol e POLARIS, verifique se o edital permite ou incentiva contato prévio com o supervisor e, se sim, envie uma mensagem curta de apresentação.</p>
+      <p class="tl-phase">Etapa 1 · Urgente (ate 06/10)</p>
+      <p class="tl-title">Verificacoes das oportunidades com prazo imediato</p>
+      <p class="tl-body">Stockholm University (reconfirmar prazo 01/10 no portal): verifique se a vaga DEM-LOSS ainda esta aberta e se as exigencias de formacao quantitativa sao impeditivas para sua candidatura. Roskilde University (prazo 06/10): reconfirme o prazo no portal e avalie a barreira do dinamarques. POLARIS (05/10): candidatura mais urgente desta semana. E-mail para liyun.yang@ki.se (KI/KTH, prazo 08/10): 15 minutos que confirmam ou descartam uma candidatura de alto potencial.</p>
     </div>
     <div class="tl-item">
-      <p class="tl-phase">Outubro 2026</p>
-      <p class="tl-title">Candidaturas principais · Manchester, Cardiff e POLARIS</p>
-      <p class="tl-body">As três candidaturas com maior probabilidade de retorno positivo. Carta de motivação diferente para cada eixo narrativo. POLARIS exige plano de formação em estatística: comece o curso no Coursera antes de escrever essa carta, para citar como "em andamento".</p>
+      <p class="tl-phase">Etapa 2 · Semana de 06 a 12/10</p>
+      <p class="tl-title">Verificacoes das oportunidades com prazo medio</p>
+      <p class="tl-body">TU Delft (prazo 19/10): verifique os requisitos de formacao em engenharia e avalie o alinhamento do seu perfil. Bristol (prazo 21/10): leia o edital completo e identifique qual supervisor da lista tematica mais se aproxima da sua pesquisa. Porto/DemSSO (janela 22/10 a 19/11): confirme as exigencias de financiamento antes de avancar. Resultado esperado desta etapa: lista de candidaturas confirmadas com prazo e documentos necessarios.</p>
     </div>
     <div class="tl-item">
-      <p class="tl-phase">Out a Nov 2026</p>
-      <p class="tl-title">Cartas de recomendação e artigo em inglês</p>
-      <p class="tl-body">Solicite cartas para Prof. Michel Reis (Projeto Coração), Profª Jaqueline Pereira (IC meningomielocele) e Profª Grasiele Nespoli (orientadora Fiocruz). Inicie a adaptação da dissertação para artigo em inglês em Occupational Medicine ou Work.</p>
+      <p class="tl-phase">Etapa 3 · Ate meados de outubro</p>
+      <p class="tl-title">Definicao de qual oportunidade seguir</p>
+      <p class="tl-body">Com as verificacoes feitas, decida a prioridade da rodada: qual candidatura tem o melhor alinhamento entre seu perfil, o projeto proposto e a viabilidade de financiamento. Defina 2 ou 3 candidaturas principais e uma lista de reserva. Esse recorte evita dispersao de energia nas proximas semanas.</p>
     </div>
     <div class="tl-item">
-      <p class="tl-phase">Nov 2026</p>
-      <p class="tl-title">E-mail para Profa. Mirella Veras (Manitoba) e candidatura Monash</p>
-      <p class="tl-body">Envie e-mail direto para a Mirella Veras em português: explique o perfil, a trajetória e o interesse em supervisão para 2027. Não precisa ter projeto fechado; demonstre alinhamento temático. Para Monash (prazo jan/27), comece a elaborar o research statement com o eixo cardiovascular enquanto ainda está ativa com as candidaturas de outubro.</p>
+      <p class="tl-phase">Etapa 4 · Out a Nov 2026</p>
+      <p class="tl-title">Organizacao dos materiais e eventuais contatos com professoras</p>
+      <p class="tl-body">Levante o que cada candidatura exige: CV academico em ingles, carta de motivacao, research proposal, historico escolar, diplomas traduzidos, cartas de recomendacao. Solicite cartas para Prof. Michel Reis (Projeto Coracao), Profa. Jaqueline Pereira (IC meningomielocele) e Profa. Grasiele Nespoli (Fiocruz) com antecedencia minima de tres semanas. Eventuais contatos com professoras: Thomas Perilleux (UCLouvain/CriDIS), Isabelle Hansez (ULiege/ValoRH), Flore Barcellini (CRTD/Cnam), Isaac Sasson (Stockholm, se aplicavel) e Mirella Veras (Laval).</p>
     </div>
     <div class="tl-item">
-      <p class="tl-phase">Dez 2026 a Jan 2027</p>
-      <p class="tl-title">Nicosia, Birmingham e vagas MSCA 2027</p>
-      <p class="tl-body">Nicosia (prazo dez/26): confirme o financiamento antes de investir. Birmingham: avance como candidatura principal apenas se houver fonte de bolsa identificada (CAPES/PrInt, CNPq, Commonwealth). Vagas MSCA 2027 (Nottingham, Loughborough e outras redes europeias): candidaturas com mais tempo de preparo e carta mais robusta.</p>
+      <p class="tl-phase">Etapa 5 · Em paralelo, ao longo de outubro</p>
+      <p class="tl-title">Feitura do CV academico em ingles</p>
+      <p class="tl-body">CV academico diferente do curriculo profissional: estrutura cronologica inversa com secoes de education, research experience, publications/presentations, skills e references. Adapte para cada candidatura, realcando o que e mais relevante para aquele projeto especifico. Para vagas com projeto definido, destaque experiencia clinica e pesquisa aplicada; para programas de projeto proprio, reforce o recorte tematico e a filiacao teorica. Versao base em ingles primeiro, adaptacoes depois.</p>
+    </div>
+    <div class="tl-item">
+      <p class="tl-phase">Nov 2026 em diante</p>
+      <p class="tl-title">Verificacao DAAD, Humboldt e CAPES para financiamento</p>
+      <p class="tl-body">Apos confirmar a candidatura prioritaria, verifique as janelas de financiamento: DAAD (daad.org.br), Fundacao Alexander von Humboldt e CAPES PDSE (para estadia de pesquisa, nao doutorado pleno). Candida-se a financiamento em paralelo ao processo de candidatura academica, nao depois. Ciclo 2027 da CAPES Doutorado Pleno: avalie se havera edital e se um pre-aceite de universidade e viavel.</p>
     </div>
   </div>
 </section>
 
-<!-- SÍNTESE FINAL -->
+<!-- SINTESE -->
 <section class="section" id="sintese">
-  <p class="section-label">Síntese</p>
-  <h2>Onde você está e o que isso significa</h2>
+  <p class="section-label">Sintese</p>
+  <h2>Onde voce esta e o que isso significa</h2>
 
   <div class="verdict-block">
     <p class="verdict-block-label">Principal ativo</p>
-    <p><strong>Experiência clínica e pesquisa em múltiplos contextos de reabilitação.</strong> Sua trajetória reúne iniciação científica em cardiologia e pediatria, especialização dupla em UTI, e pesquisa de mestrado em saúde mental ocupacional. Cada um desses contextos abre um eixo narrativo distinto, o que é estrategicamente útil em processos seletivos com perfis variados de vaga.</p>
+    <p><strong>Dissertacao de mestrado que e, ao mesmo tempo, pesquisa e diferencial.</strong> Poucas candidatas internacionais chegam a um doutorado em saude ocupacional europeu com um mestrado na Fiocruz sobre sofrimento no trabalho ancorado em Dejours. Nos eixos 2 e 3, isso nao e apenas um item no curriculo: e a identidade da candidatura.</p>
   </div>
 
   <div class="verdict-block">
     <p class="verdict-block-label">Principal gap</p>
-    <p><strong>Repertório quantitativo e ferramentas estatísticas.</strong> A ausência de experiência formal com R, SPSS ou análise de dados aparece em várias das vagas mapeadas. Não é um bloqueador, mas precisa ser endereçado ativamente: com um curso em andamento e uma narrativa honesta de desenvolvimento planejado para o doutorado.</p>
+    <p><strong>Repertorio quantitativo e rede academica ainda por construir.</strong> A ausencia de experiencia formal com R ou SPSS aparece em vagas dos dois eixos. E a rede academica europeia comeca agora: cada e-mail enviado e parte do processo de candidatura, nao preparacao para ele.</p>
   </div>
 
   <div class="verdict-block">
     <p class="verdict-block-label">Prioridade imediata</p>
-    <p><strong>Candidaturas financiadas em reabilitação clínica, cardiovascular e funcional.</strong> Manchester, Cardiff, Bristol e Bath têm prazo em outubro e aderência alta. POLARIS tem prazo em 05/10 e é a candidatura mais urgente. Esses cinco processos devem concentrar a energia nas próximas três semanas.</p>
+    <p><strong>POLARIS (05/10) + e-mail KTH/KI + TU Delft (19/10) + Bristol (21/10).</strong> Estas quatro acoes concentram o foco nas proximas tres semanas. O e-mail para o KI leva 15 minutos e pode abrir ou fechar uma candidatura de alto potencial. Faca antes de comecar qualquer carta de motivacao.</p>
   </div>
 </section>
 
-<!-- SERVIÇOS -->
+<!-- SERVICOS -->
 <section class="section" id="servicos">
-  <p class="section-label">Próximos passos com a mentoria</p>
-  <h2>Monte o seu passaporte para viver esse sonho</h2>
+  <p class="section-label">Expansao da mentoria</p>
+  <h2>Servicos adicionais disponiveis</h2>
 
-  <!-- O que já foi entregue -->
-  <div class="callout callout-green mb">
-    <span class="callout-icon">✅</span>
-    <div>
-      <strong>O que já foi realizado neste diagnóstico</strong>
-      <p style="margin-bottom:0">Diagnóstico de perfil completo · Curadoria inicial de oportunidades (12 vagas mapeadas e analisadas) · Análise de gaps · Estratégia de posicionamento por eixo narrativo · Plano de ação semana a semana.</p>
-    </div>
-  </div>
+  <p class="menu-intro">O que foi contratado esta em andamento. Abaixo estao os servicos disponiveis como contratacao adicional para quando voce precisar. Selecione o que fizer sentido agora e receba um resumo por WhatsApp.</p>
 
-  <!-- Recomendação personalizada -->
-  <div class="rec-block">
-    <h3>Minha sugestão para o seu momento</h3>
-    <div class="rec-item">
-      <div>
-        <div class="rec-item-name">Revisão estratégica do CV em inglês</div>
-        <div class="rec-item-desc">Antes de qualquer candidatura, o CV precisa estar alinhado ao vocabulário e formato acadêmico internacional.</div>
-      </div>
-      <div class="rec-item-price">R$ 220</div>
-    </div>
-    <div class="rec-item">
-      <div>
-        <div class="rec-item-name">Primeira candidatura acompanhada · CV adaptado + carta para uma vaga concreta</div>
-        <div class="rec-item-desc">CV adaptado (R$150) + carta de motivação construção completa (R$240). Recomendo começar por Manchester ou Cardiff.</div>
-      </div>
-      <div class="rec-item-price">R$ 390</div>
-    </div>
-    <div class="rec-item">
-      <div>
-        <div class="rec-item-name">Curadoria mensal de oportunidades</div>
-        <div class="rec-item-desc">Se quiser continuar recebendo vagas novas, bolsas e chamadas dentro do seu perfil pelo WhatsApp.</div>
-      </div>
-      <div class="rec-item-price">R$ 220</div>
-    </div>
-  </div>
-
-  <p class="menu-intro">Prefere montar de outra forma? Escolha abaixo apenas os serviços que fizerem sentido pra você agora. O total aparece em tempo real e ao final você pode me enviar sua seleção ou gerar um passaporte em PDF.</p>
-
-  <!-- MENU MODULAR -->
   <p class="menu-divider">Mapeamento e monitoramento</p>
-
   <button class="service-btn" role="checkbox" aria-checked="false" onclick="toggleService(this,220)" data-price="220" data-cat="Mapeamento e monitoramento">
     <div class="service-left">
       <div class="service-name">Curadoria mensal de oportunidades</div>
-      <div class="service-desc">Monitoro as oportunidades por 30 dias e envio vagas novas, bolsas e chamadas alinhadas ao seu perfil, direto no WhatsApp.</div>
+      <div class="service-desc">Monitoro por 30 dias e envio vagas novas, bolsas e chamadas alinhadas ao seu perfil, direto no WhatsApp.</div>
     </div>
     <div class="service-price">R$ 220</div>
   </button>
 
   <p class="menu-divider">CV e documentos</p>
-
   <button class="service-btn" role="checkbox" aria-checked="false" onclick="toggleService(this,220)" data-price="220" data-cat="CV e documentos">
     <div class="service-left">
-      <div class="service-name">Revisão estratégica de CV em inglês</div>
-      <div class="service-desc">Análise completa com feedback escrito: posicionamento, o que incluir, tirar e fortalecer para candidaturas internacionais.</div>
+      <div class="service-name">Revisao estrategica de CV em ingles</div>
+      <div class="service-desc">Analise completa com feedback escrito: posicionamento, o que incluir, tirar e fortalecer para candidaturas internacionais.</div>
     </div>
     <div class="service-price">R$ 220</div>
   </button>
-
   <button class="service-btn" role="checkbox" aria-checked="false" onclick="toggleService(this,150)" data-price="150" data-cat="CV e documentos">
     <div class="service-left">
-      <div class="service-name">Adaptação de CV para uma vaga específica</div>
-      <div class="service-desc">Ajuste do CV para alinhar com os requisitos e a linguagem de uma vaga escolhida. Entrega em até 48h.</div>
+      <div class="service-name">Adaptacao de CV para uma vaga especifica</div>
+      <div class="service-desc">Ajuste do CV para alinhar com os requisitos e a linguagem de uma vaga escolhida. Entrega em ate 48h.</div>
     </div>
     <div class="service-price">R$ 150</div>
   </button>
 
-  <p class="menu-divider">Carta de motivação</p>
-
-  <button class="service-btn" role="checkbox" aria-checked="false" onclick="toggleService(this,240)" data-price="240" data-cat="Carta de motivação">
+  <p class="menu-divider">Carta de motivacao</p>
+  <button class="service-btn" role="checkbox" aria-checked="false" onclick="toggleService(this,240)" data-price="240" data-cat="Carta de motivacao">
     <div class="service-left">
-      <div class="service-variant">Construção completa</div>
-      <div class="service-name">Motivation letter · construção + revisão</div>
-      <div class="service-desc">Escrevo o rascunho completo da carta para uma vaga, com até 2 rodadas de revisão. Inclui análise do edital e do supervisor.</div>
+      <div class="service-variant">Construcao completa</div>
+      <div class="service-name">Motivation letter · construcao + revisao</div>
+      <div class="service-desc">Escrevo o rascunho completo da carta para uma vaga, com ate 2 rodadas de revisao. Inclui analise do edital e do supervisor.</div>
     </div>
     <div class="service-price">R$ 240</div>
   </button>
-
-  <button class="service-btn" role="checkbox" aria-checked="false" onclick="toggleService(this,120)" data-price="120" data-cat="Carta de motivação">
+  <button class="service-btn" role="checkbox" aria-checked="false" onclick="toggleService(this,120)" data-price="120" data-cat="Carta de motivacao">
     <div class="service-left">
-      <div class="service-variant">Revisão de texto já escrito</div>
-      <div class="service-name">Motivation letter · revisão e ajustes</div>
-      <div class="service-desc">Você traz a carta redigida e eu reviso: estrutura, argumento, adequação ao edital e ao supervisor, e fluência em inglês.</div>
+      <div class="service-variant">Revisao de texto ja escrito</div>
+      <div class="service-name">Motivation letter · revisao e ajustes</div>
+      <div class="service-desc">Voce traz a carta redigida e eu reviso: estrutura, argumento, adequacao ao edital e fluencia em ingles.</div>
     </div>
     <div class="service-price">R$ 120</div>
   </button>
 
   <p class="menu-divider">Research proposal</p>
-
   <button class="service-btn" role="checkbox" aria-checked="false" onclick="toggleService(this,350)" data-price="350" data-cat="Research proposal">
     <div class="service-left">
-      <div class="service-variant">Construção completa</div>
-      <div class="service-name">Research proposal · construção + revisão</div>
-      <div class="service-desc">Construo e reviso o research proposal (500 a 1.500 palavras), conectando sua trajetória ao projeto proposto. Exige uma sessão de briefing.</div>
+      <div class="service-variant">Construcao completa</div>
+      <div class="service-name">Research proposal · construcao + revisao</div>
+      <div class="service-desc">Construo e reviso o research proposal (500 a 1.500 palavras), conectando sua trajetoria ao projeto proposto. Exige uma sessao de briefing.</div>
     </div>
     <div class="service-price">R$ 350</div>
   </button>
-
   <button class="service-btn" role="checkbox" aria-checked="false" onclick="toggleService(this,150)" data-price="150" data-cat="Research proposal">
     <div class="service-left">
-      <div class="service-variant">Revisão de texto já escrito</div>
-      <div class="service-name">Research proposal · revisão e ajustes</div>
-      <div class="service-desc">Você traz o rascunho e eu reviso: coerência com o projeto proposto, linguagem acadêmica, estrutura e argumentação.</div>
+      <div class="service-variant">Revisao de texto ja escrito</div>
+      <div class="service-name">Research proposal · revisao e ajustes</div>
+      <div class="service-desc">Voce traz o rascunho e eu reviso: coerencia com o projeto proposto, linguagem academica, estrutura e argumentacao.</div>
     </div>
     <div class="service-price">R$ 150</div>
   </button>
 
-  <p class="menu-divider">Revisão e candidatura</p>
-
-  <button class="service-btn" role="checkbox" aria-checked="false" onclick="toggleService(this,150)" data-price="150" data-cat="Revisão e candidatura">
+  <p class="menu-divider">Revisao e candidatura</p>
+  <button class="service-btn" role="checkbox" aria-checked="false" onclick="toggleService(this,150)" data-price="150" data-cat="Revisao e candidatura">
     <div class="service-left">
-      <div class="service-name">Revisão de candidatura completa</div>
-      <div class="service-desc">Leio de forma crítica todos os documentos antes do envio: CV, carta e research statement. Uma rodada de feedback escrito.</div>
+      <div class="service-name">Revisao de candidatura completa</div>
+      <div class="service-desc">Leio de forma critica todos os documentos antes do envio: CV, carta e research statement. Uma rodada de feedback escrito.</div>
     </div>
     <div class="service-price">R$ 150</div>
   </button>
 
   <p class="menu-divider">Encontros e suporte</p>
-
   <button class="service-btn" role="checkbox" aria-checked="false" onclick="toggleService(this,180)" data-price="180" data-cat="Encontros e suporte">
     <div class="service-left">
-      <div class="service-name">Encontro estratégico · 60 minutos</div>
-      <div class="service-desc">Sessão ao vivo (Google Meet ou presencial) para diagnóstico, decisão de rota, revisão de candidatura ou qualquer tema que precisar trabalhar.</div>
+      <div class="service-name">Encontro estrategico · 60 minutos</div>
+      <div class="service-desc">Sessao ao vivo (Google Meet ou presencial) para diagnostico, decisao de rota, revisao de candidatura ou qualquer tema que precisar trabalhar.</div>
     </div>
     <div class="service-price">R$ 180</div>
   </button>
-
   <button class="service-btn" role="checkbox" aria-checked="false" onclick="toggleService(this,220)" data-price="220" data-cat="Encontros e suporte">
     <div class="service-left">
-      <div class="service-name">Simulação de entrevista em inglês</div>
-      <div class="service-desc">Simulo uma entrevista com supervisor ou comitê de seleção. Feedback sobre conteúdo, fluência e posicionamento, com perguntas reais do contexto europeu.</div>
+      <div class="service-name">Simulacao de entrevista em ingles</div>
+      <div class="service-desc">Simulo uma entrevista com supervisor ou comite de selecao. Feedback sobre conteudo, fluencia e posicionamento, com perguntas reais do contexto europeu.</div>
     </div>
     <div class="service-price">R$ 220</div>
   </button>
-
   <button class="service-btn" role="checkbox" aria-checked="false" onclick="toggleService(this,180)" data-price="180" data-cat="Encontros e suporte">
     <div class="service-left">
       <div class="service-name">Suporte por WhatsApp · 30 dias</div>
-      <div class="service-desc">Dúvidas, revisões rápidas e orientação nos próximos 30 dias. Respondo em até 24h em dias úteis.</div>
+      <div class="service-desc">Duvidas, revisoes rapidas e orientacao nos proximos 30 dias. Respondo em ate 24h em dias uteis.</div>
     </div>
     <div class="service-price">R$ 180</div>
   </button>
 
   <div id="upsell" class="upsell-msg">
-    Sua seleção está chegando ao valor de um acompanhamento estruturado. Dependendo da combinação escolhida, pode valer a pena conversar sobre um plano personalizado antes de fechar.
+    Sua selecao esta chegando ao valor de um acompanhamento estruturado. Pode valer a pena conversar sobre um plano personalizado antes de fechar.
   </div>
 
   <div class="passport-btn-wrap" id="passport-btn-wrap">
     <button class="btn-passport" onclick="gerarPassaporte()">
       <span>🛂</span> Gerar meu passaporte
     </button>
-    <p class="passport-note">Abre uma prévia do documento com seus serviços selecionados. Salve como PDF pelo navegador.</p>
+    <p class="passport-note">Abre uma previa do documento com seus servicos selecionados. Salve como PDF pelo navegador.</p>
   </div>
 </section>
 
 <!-- TOTAL BAR -->
 <div class="total-bar" id="totalBar" role="status" aria-live="polite">
   <div class="total-bar-meta">
-    <div class="total-bar-count" id="totalCount">0 serviços selecionados</div>
+    <div class="total-bar-count" id="totalCount">0 servicos selecionados</div>
     <div class="total-bar-amount" id="totalValue">R$ 0</div>
   </div>
   <div class="total-bar-actions">
-    <button class="btn-clear" onclick="clearAll()">Limpar seleção</button>
+    <button class="btn-clear" onclick="clearAll()">Limpar selecao</button>
     <button class="btn-whatsapp" onclick="enviarWhatsApp()">
-      <span>💬</span> Enviar seleção
+      <span>💬</span> Enviar selecao
     </button>
   </div>
 </div>
 
+<!-- EMAIL OVERLAY -->
+<div class="email-overlay" id="emailOverlay" role="dialog" aria-modal="true" aria-labelledby="emailTitle">
+  <div class="email-modal">
+    <h3 id="emailTitle">Rascunho de e-mail</h3>
+    <p class="subtitle" id="emailSubtitle">Para confirmar viabilidade da candidatura</p>
+    <div class="email-field">
+      <label>Para</label>
+      <div class="field-val" id="emailTo"></div>
+    </div>
+    <div class="email-field">
+      <label>Assunto</label>
+      <div class="field-val" id="emailSubject"></div>
+    </div>
+    <div class="email-field">
+      <label>Corpo do e-mail</label>
+      <div class="email-body-text" id="emailBody"></div>
+    </div>
+    <div class="email-modal-footer">
+      <button class="btn-copy-email" onclick="copiarEmail()">📋 Copiar texto</button>
+      <button class="btn-close-email" onclick="fecharEmail()">Fechar</button>
+    </div>
+  </div>
+</div>
+
 <script>
+  // Servicos
   let selected = new Map();
 
   function toggleService(el, price) {
@@ -1168,13 +1636,8 @@ a:hover { text-decoration: underline; }
     const desc = el.querySelector('.service-desc').textContent.trim();
     const cat  = el.dataset.cat || '';
     const isOn = el.getAttribute('aria-checked') === 'true';
-    if (isOn) {
-      selected.delete(name);
-      el.setAttribute('aria-checked', 'false');
-    } else {
-      selected.set(name, { price, desc, cat });
-      el.setAttribute('aria-checked', 'true');
-    }
+    if (isOn) { selected.delete(name); el.setAttribute('aria-checked','false'); }
+    else { selected.set(name, {price, desc, cat}); el.setAttribute('aria-checked','true'); }
     updateTotal();
   }
 
@@ -1185,29 +1648,24 @@ a:hover { text-decoration: underline; }
   }
 
   function updateTotal() {
-    const total  = Array.from(selected.values()).reduce((a,b) => a + b.price, 0);
-    const count  = selected.size;
-    const bar    = document.getElementById('totalBar');
-    const cEl    = document.getElementById('totalCount');
-    const vEl    = document.getElementById('totalValue');
-    const upsell = document.getElementById('upsell');
-    const btnW   = document.getElementById('passport-btn-wrap');
-
-    cEl.textContent = count === 0
-      ? '0 serviços selecionados'
-      : `${count} serviço${count > 1 ? 's' : ''} selecionado${count > 1 ? 's' : ''}`;
+    const total = Array.from(selected.values()).reduce((a,b) => a + b.price, 0);
+    const count = selected.size;
+    const bar   = document.getElementById('totalBar');
+    const cEl   = document.getElementById('totalCount');
+    const vEl   = document.getElementById('totalValue');
+    const up    = document.getElementById('upsell');
+    const btnW  = document.getElementById('passport-btn-wrap');
+    cEl.textContent = count === 0 ? '0 servicos selecionados' : `${count} servico${count > 1 ? 's' : ''} selecionado${count > 1 ? 's' : ''}`;
     vEl.textContent = 'R$ ' + total.toLocaleString('pt-BR');
     bar.classList.toggle('visible', count > 0);
-    upsell.classList.toggle('visible', total >= 700);
+    up.classList.toggle('visible', total >= 700);
     btnW.style.display = count > 0 ? 'block' : 'none';
   }
 
   function enviarWhatsApp() {
     const total = Array.from(selected.values()).reduce((a,b) => a + b.price, 0);
-    let msg = 'Olá, Bruna! Fiz minha seleção no diagnóstico:\n\n';
-    for (const [name, {price}] of selected) {
-      msg += `• ${name} · R$${price.toLocaleString('pt-BR')}\n`;
-    }
+    let msg = 'Ola, Bruna! Fiz minha selecao no diagnostico:\n\n';
+    for (const [name, {price}] of selected) msg += `• ${name} · R$${price.toLocaleString('pt-BR')}\n`;
     msg += `\nTotal: R$${total.toLocaleString('pt-BR')}\n\nQuero saber como prosseguir!`;
     const url = 'https://wa.me/55' + encodeURIComponent(msg);
     window.open(url, '_blank');
@@ -1215,74 +1673,99 @@ a:hover { text-decoration: underline; }
 
   function gerarPassaporte() {
     const total = Array.from(selected.values()).reduce((a,b) => a + b.price, 0);
-    const date  = new Date().toLocaleDateString('pt-BR', { day:'2-digit', month:'long', year:'numeric' });
+    const date  = new Date().toLocaleDateString('pt-BR', {day:'2-digit', month:'long', year:'numeric'});
     const cats  = {};
     for (const [name, {price, desc, cat}] of selected) {
       if (!cats[cat]) cats[cat] = [];
-      cats[cat].push({ name, price, desc });
+      cats[cat].push({name, price, desc});
     }
     let rows = '';
     for (const [cat, items] of Object.entries(cats)) {
       rows += `<tr><td colspan="2" style="padding:18px 0 6px;font-size:10px;letter-spacing:2px;text-transform:uppercase;color:#8A8A96;font-family:'DM Mono',monospace">${cat}</td></tr>`;
       items.forEach(({name, price, desc}) => {
-        rows += `<tr style="border-bottom:1px solid #EDEAE3">
-          <td style="padding:12px 0;vertical-align:top">
-            <div style="font-weight:600;font-size:14px;color:#1C1C1E;margin-bottom:3px">${name}</div>
-            <div style="font-size:12px;color:#8A8A96;line-height:1.5">${desc}</div>
-          </td>
-          <td style="padding:12px 0;text-align:right;vertical-align:top;white-space:nowrap;font-family:'DM Mono',monospace;font-size:14px;color:#1D6B6B;font-weight:500">R$ ${price.toLocaleString('pt-BR')}</td>
-        </tr>`;
+        rows += `<tr style="border-bottom:1px solid #EDEAE3"><td style="padding:12px 0;vertical-align:top"><div style="font-weight:600;font-size:14px;color:#1C1C1E;margin-bottom:3px">${name}</div><div style="font-size:12px;color:#8A8A96;line-height:1.5">${desc}</div></td><td style="padding:12px 0;text-align:right;vertical-align:top;white-space:nowrap;font-family:'DM Mono',monospace;font-size:14px;color:#1D6B6B;font-weight:500">R$ ${price.toLocaleString('pt-BR')}</td></tr>`;
       });
     }
-    const html = `<!DOCTYPE html><html lang="pt-BR"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Passaporte · Tamires Veiga</title><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,600;9..144,700&family=Inter:wght@400;500;600&family=DM+Mono:wght@400;500&display=swap"><style>*{box-sizing:border-box;margin:0;padding:0}body{font-family:'Inter',sans-serif;background:#F7F5F0;color:#1C1C1E;padding:48px 40px;max-width:680px;margin:auto}@media print{body{background:white;padding:32px}}</style></head><body>
-    <div style="display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:40px;padding-bottom:28px;border-bottom:2px solid #1D6B6B">
-      <div>
-        <div style="font-family:'DM Mono',monospace;font-size:10px;letter-spacing:2.5px;text-transform:uppercase;color:#1D6B6B;margin-bottom:10px">Mentoria Internacional · PhD</div>
-        <div style="font-family:'Fraunces',serif;font-size:28px;font-weight:700;line-height:1.2;color:#1C1C1E">Passaporte para<br>viver esse sonho</div>
-        <div style="margin-top:10px;font-size:13px;color:#8A8A96">Tamires Rezende Veiga · ${date}</div>
-      </div>
-      <div style="text-align:right"><div style="font-size:36px">🛂</div><div style="font-family:'DM Mono',monospace;font-size:10px;color:#8A8A96;margin-top:6px;letter-spacing:1px">MENTORIA<br>INTERNACIONAL</div></div>
-    </div>
-    <p style="font-size:13.5px;color:#48484F;line-height:1.7;margin-bottom:32px">Este documento reúne os serviços que você escolheu como próximos passos da sua jornada rumo ao doutorado internacional. Guarda como referência e me envia quando estiver pronta para começar.</p>
-    <table style="width:100%;border-collapse:collapse;margin-bottom:32px">
-      <thead><tr style="border-bottom:2px solid #EDEAE3"><th style="text-align:left;padding-bottom:10px;font-size:12px;letter-spacing:1px;text-transform:uppercase;color:#8A8A96;font-weight:600">Serviço</th><th style="text-align:right;padding-bottom:10px;font-size:12px;letter-spacing:1px;text-transform:uppercase;color:#8A8A96;font-weight:600">Valor</th></tr></thead>
-      <tbody>${rows}</tbody>
-      <tfoot>
-        <tr><td style="padding:20px 0 4px;font-family:'Fraunces',serif;font-size:17px;font-weight:700;color:#1C1C1E">Total</td><td style="padding:20px 0 4px;text-align:right;font-family:'DM Mono',monospace;font-size:20px;font-weight:500;color:#1D6B6B">R$ ${total.toLocaleString('pt-BR')}</td></tr>
-        <tr><td colspan="2" style="font-size:11.5px;color:#8A8A96;padding-bottom:8px">Pagamento via Pix ou transferência. Cada entrega começa após confirmação.</td></tr>
-      </tfoot>
-    </table>
-    <div style="border-top:1px solid #EDEAE3;padding-top:24px;display:flex;justify-content:space-between;align-items:center;gap:16px;flex-wrap:wrap">
-      <div><div style="font-family:'Fraunces',serif;font-size:15px;font-weight:600;color:#1C1C1E;margin-bottom:3px">Bruna Fani</div><div style="font-size:12px;color:#8A8A96">Mentoria Internacional de Carreiras Acadêmicas</div></div>
-      <div style="text-align:right"><div style="font-size:12px;color:#8A8A96">faniduartee@gmail.com</div><div style="font-size:11px;color:#AEAEB6;margin-top:4px">Documento gerado a partir do diagnóstico personalizado.</div></div>
-    </div>
-    <script>window.onload=function(){window.print();}<\/script>
-    </body></html>`;
+    const html = `<!DOCTYPE html><html lang="pt-BR"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Passaporte Tamires Veiga</title><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,600;9..144,700&family=Inter:wght@400;500;600&family=DM+Mono:wght@400;500&display=swap"><style>*{box-sizing:border-box;margin:0;padding:0}body{font-family:'Inter',sans-serif;background:#F7F5F0;color:#1C1C1E;padding:48px 40px;max-width:680px;margin:auto}@media print{body{background:white;padding:32px}}</style></head><body><div style="display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:40px;padding-bottom:28px;border-bottom:2px solid #1D6B6B"><div><div style="font-family:'DM Mono',monospace;font-size:10px;letter-spacing:2.5px;text-transform:uppercase;color:#1D6B6B;margin-bottom:10px">Mentoria Internacional · PhD</div><div style="font-family:'Fraunces',serif;font-size:28px;font-weight:700;line-height:1.2;color:#1C1C1E">Passaporte para<br>viver esse sonho</div><div style="margin-top:10px;font-size:13px;color:#8A8A96">Tamires Rezende Veiga · ${date}</div></div><div style="text-align:right"><div style="font-size:36px">🛂</div></div></div><p style="font-size:13.5px;color:#48484F;line-height:1.7;margin-bottom:32px">Este documento reune os servicos que voce escolheu como proximos passos da sua jornada rumo ao doutorado internacional.</p><table style="width:100%;border-collapse:collapse;margin-bottom:32px"><thead><tr style="border-bottom:2px solid #EDEAE3"><th style="text-align:left;padding-bottom:10px;font-size:12px;letter-spacing:1px;text-transform:uppercase;color:#8A8A96;font-weight:600">Servico</th><th style="text-align:right;padding-bottom:10px;font-size:12px;letter-spacing:1px;text-transform:uppercase;color:#8A8A96;font-weight:600">Valor</th></tr></thead><tbody>${rows}</tbody><tfoot><tr><td style="padding:20px 0 4px;font-family:'Fraunces',serif;font-size:17px;font-weight:700;color:#1C1C1E">Total</td><td style="padding:20px 0 4px;text-align:right;font-family:'DM Mono',monospace;font-size:20px;font-weight:500;color:#1D6B6B">R$ ${total.toLocaleString('pt-BR')}</td></tr><tr><td colspan="2" style="font-size:11.5px;color:#8A8A96;padding-bottom:8px">Pagamento via Pix ou transferencia. Cada entrega comeca apos confirmacao.</td></tr></tfoot></table><div style="border-top:1px solid #EDEAE3;padding-top:24px;display:flex;justify-content:space-between;align-items:center;gap:16px;flex-wrap:wrap"><div><div style="font-family:'Fraunces',serif;font-size:15px;font-weight:600;color:#1C1C1E;margin-bottom:3px">Bruna Fani</div><div style="font-size:12px;color:#8A8A96">Mentoria Internacional de Carreiras Academicas</div></div><div style="text-align:right"><div style="font-size:12px;color:#8A8A96">faniduartee@gmail.com</div></div></div><script>window.onload=function(){window.print();}<\/script></body></html>`;
     const blob = new Blob([html], {type:'text/html;charset=utf-8'});
     const url  = URL.createObjectURL(blob);
-    const win  = window.open(url,'_blank');
+    const win  = window.open(url, '_blank');
     if (!win) alert('Permita pop-ups neste site para gerar o passaporte.');
   }
 
-  // Keyboard nav
-  document.querySelectorAll('.service-btn').forEach(btn => {
-    btn.addEventListener('keydown', e => {
-      if (e.key === ' ' || e.key === 'Enter') {
-        e.preventDefault();
-        btn.click();
-      }
+  // Tabs
+  function showTab(id) {
+    document.querySelectorAll('.tab-panel').forEach(p => p.classList.remove('active'));
+    document.querySelectorAll('.tab-btn').forEach(b => { b.classList.remove('active'); b.setAttribute('aria-selected','false'); });
+    document.getElementById('panel-' + id).classList.add('active');
+    document.getElementById('tab-' + id).classList.add('active');
+    document.getElementById('tab-' + id).setAttribute('aria-selected','true');
+  }
+
+  // Email drafts
+  const emails = {
+    kth: {
+      to: 'liyun.yang@ki.se',
+      subject: 'Inquiry: PhD position in Ergonomics and Work-Related MSDs: international applicant',
+      body: `Dear Dr. Yang,
+
+I am writing to inquire about the PhD position on Ergonomics, Digital Technology and Work-Related Musculoskeletal Disorders recently advertised by your group at KTH/KI (job ID 970550).
+
+I am a Brazilian physiotherapist and researcher holding a Master's degree from Fiocruz (Oswaldo Cruz Foundation) on burnout and psychic suffering in the workplace, grounded in Dejours' psychodynamics of work. My clinical background includes specialisation in adult ICU and neonatal/paediatric intensive care, and my Master's research connects occupational health, rehabilitation and the subjective dimensions of work-related suffering.
+
+I would like to ask two brief questions before preparing a full application:
+
+1. Does the position consider applications from international candidates (non-EU/Swedish residents)?
+2. Is Swedish language proficiency required at the application stage, or is it a skill to be developed during the doctoral programme?
+
+I believe my profile is well aligned with the thematic focus of your group, and I am genuinely interested in exploring whether a candidacy would be appropriate.
+
+Thank you for your time and consideration.
+
+With kind regards,
+Tamires Rezende Veiga
+[ORCID / LinkedIn / e-mail de contato]`
+    }
+  };
+
+  function abrirEmail(key) {
+    const e = emails[key];
+    if (!e) return;
+    document.getElementById('emailTo').textContent = e.to;
+    document.getElementById('emailSubject').textContent = e.subject;
+    document.getElementById('emailBody').textContent = e.body;
+    document.getElementById('emailOverlay').classList.add('visible');
+  }
+
+  function fecharEmail() {
+    document.getElementById('emailOverlay').classList.remove('visible');
+  }
+
+  function copiarEmail() {
+    const body = document.getElementById('emailBody').textContent;
+    const subj = document.getElementById('emailSubject').textContent;
+    const full = `Assunto: ${subj}\n\n${body}`;
+    navigator.clipboard.writeText(full).then(() => {
+      const btn = document.querySelector('.btn-copy-email');
+      const orig = btn.textContent;
+      btn.textContent = 'Copiado!';
+      setTimeout(() => btn.textContent = orig, 2000);
+    }).catch(() => {
+      const el = document.getElementById('emailBody');
+      const range = document.createRange();
+      range.selectNode(el);
+      window.getSelection().removeAllRanges();
+      window.getSelection().addRange(range);
     });
+  }
+
+  document.getElementById('emailOverlay').addEventListener('click', function(e) {
+    if (e.target === this) fecharEmail();
   });
 
-  // Nav highlight
-  const sections = document.querySelectorAll('section[id], header[id]');
-  const navLinks = document.querySelectorAll('.nav-top a');
-  const io = new IntersectionObserver(entries => {
-    entries.forEach(e => {
-      if (e.isIntersecting) {
-        navLinks.forEach(a => a.classList.toggle('active', a.getAttribute('href') === '#' + e.target.id));
-      }
+  document.querySelectorAll('.service-btn').forEach(btn => {
+    btn.addEventListener('keydown', e => {
+      if (e.key === ' ' || e.key === 'Enter') { e.preventDefault(); btn.click(); }
     });
-  }, { threshold: 0.25 });
-  sections.forEach(s => io.observe(s));
+  });
 </script>
